@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_white">#D6D6D6</color>
+    <color name="light_white_stroke">#32D6D6D6</color>
+    <color name="background">#354936</color>
+    <color name="second">#EA613A</color>
+    <color name="red_lite">#FF9696</color>
+    <color name="overlay">#201E1A</color>
+    <color name="overlay_light">#3E3D3C</color>
+    <color name="blue_light">#2D93AD</color>
+    <color name="orange_light">#D58936</color>
+
 </resources>

@@ -5,6 +5,7 @@ plugins {
 android {
     namespace = "com.unirest"
     compileSdk = 34
+    viewBinding.isEnabled = true
 
     defaultConfig {
         applicationId = "com.unirest"
@@ -32,11 +33,37 @@ android {
 }
 
 dependencies {
-
+    // Core
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
+    // Layouts
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment:2.7.6")
+    implementation("androidx.navigation:navigation-ui:2.7.6")
+    // MVVM
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1") // 2.5.1+ NOT WORKS!!!!
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")  // 2.5.1+ NOT WORKS!!!!
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
+    // Picasso
+    implementation("com.squareup.picasso:picasso:2.71828")
+    // Shimmer
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+    // GSON
+    implementation("com.google.code.gson:gson:2.10.1")
+    // JWT
+    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-gson:0.12.5")
+    // Barcode & QRCode
+    implementation("com.github.yuriy-budiyev:code-scanner:2.3.0")
+
+    implementation("com.github.aabhasr1:OtpView:v1.1.2")
+
+    implementation(fileTree("libs"))
 }

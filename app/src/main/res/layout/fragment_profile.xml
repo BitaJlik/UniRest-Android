@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image"
+        style="@style/roundedCornersImageView"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/unirest_white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/personalInfo"
+            style="@style/defaultMaterialButtonOutline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/personal_information"
+            app:icon="@drawable/ic_personal"
+            app:iconSize="24dp"
+            app:iconTint="@color/light_white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/payments"
+            style="@style/defaultMaterialButtonOutline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/my_payments"
+            app:icon="@drawable/ic_payment"
+            app:iconSize="24dp"
+            app:iconTint="@color/light_white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/personalList"
+            style="@style/defaultMaterialButtonOutline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/personal_list"
+            app:icon="@drawable/ic_personal_list"
+            app:iconSize="24dp"
+            app:iconTint="@color/light_white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/settings"
+            style="@style/defaultMaterialButtonOutline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/settings"
+            app:icon="@drawable/ic_settings"
+            app:iconSize="24dp"
+            app:iconTint="@color/light_white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/logout"
+            style="@style/defaultMaterialButtonOutline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/log_out"
+            app:icon="@drawable/ic_logout"
+            app:iconSize="24dp"
+            app:iconTint="@color/light_white" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,8 +1,90 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.UniRest" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <style name="Base.Theme.UniRest" parent="Theme.Material3.Light.NoActionBar">
+        <item name="bottomNavigationStyle">@style/defaultBottomNavigation</item>
+        <item name="materialButtonStyle">@style/defaultMaterialButton</item>
+        <item name="android:transitionGroup">true</item>
+
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+    </style>
+
+    <style name="defaultBottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemActiveIndicatorStyle">@null</item>
+    </style>
+
+    <style name="roundedCornersImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="roundedCornersImageViewCircle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="defaultInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="fontFamily">@font/commissioner_medium</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:hint">@string/password_repeat</item>
+        <item name="android:textColorHint">@color/light_white</item>
+        <item name="hintTextColor">@color/light_white</item>
+        <item name="boxBackgroundColor">@color/overlay</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/input_layout_stroke</item>
+        <item name="cursorColor">@color/second</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeWidth">0dp</item>
+    </style>
+
+    <style name="defaultMaterialButtonOutline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="fontFamily">@font/commissioner_medium</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="strokeColor">@color/button_color_selector</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/light_white</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="defaultTextView" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/commissioner_medium</item>
+    </style>
+
+    <style name="defaultMaterialButton" parent="Widget.Material3.Button">
+        <item name="fontFamily">@font/commissioner_medium</item>
+        <item name="backgroundTint">@color/button_color_selector</item>
+        <item name="android:textColor">@color/light_white</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.UniRest.TextInputLayout.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="WithoutBottomCorners" parent="">
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimaryDark">@color/background</item>
+        <item name="colorAccent">@color/background</item>
     </style>
 
     <style name="Theme.UniRest" parent="Base.Theme.UniRest" />
