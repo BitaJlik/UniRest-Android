@@ -58,4 +58,15 @@ public interface ApiServices {
     @POST("user/image/upload")
     Call<ResponseBody> uploadImage(@Query("id") Long id, @Part MultipartBody.Part image);
 
+    @GET("notification/list")
+    Call<ResponseBody> getNotifications(@Query("id") Long id);
+
+    @POST("notification/call")
+    Call<ResponseBody> callToMe(@Query("id") Long id, @Body RequestBody request);
+
+    @POST("notification/read")
+    Call<ResponseBody> read(@Query("id") Long id);
+    @POST("notification/receive")
+    Call<ResponseBody> receive(@Query("id") Long id);
+
 }

@@ -22,7 +22,6 @@ public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        getActivityMain().updateUser();
         binding.itemsRV.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.itemsRV.setAdapter(adapter);
         mainViewModel.token.observe(getViewLifecycleOwner(), token -> {
@@ -31,11 +30,19 @@ public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
                 DataNetHandler.getInstance().verifyAuth(token, isVerified -> {
                     if (isVerified) {
                         DataNetHandler.getInstance().getRooms(floor.getId(), rooms -> {
+                            if (rooms.isEmpty()) return;
+
                             adapter.setItems(rooms);
                             adapter.setRoomCallback(room -> {
                                 mainViewModel.selectedRoom.setValue(room);
-                                changeFragment(new FragmentRoom(),true);
+                                changeFragment(new FragmentRoom(), true);
                             });
+
+                            if (isVisible()) {
+                                binding.shimmer.hideShimmer();
+                                binding.shimmer.setVisibility(View.GONE);
+                                binding.itemsRV.setVisibility(View.VISIBLE);
+                            }
                         });
                     }
                 });

@@ -42,9 +42,16 @@ public class FragmentHome extends BaseFragment<FragmentHomeBinding> {
                             Picasso.get().load(url).into(binding.image);
                         });
                         binding.name.setText(user.getName());
-                        binding.surname.setText(user.getSurName());
+                        binding.lastName.setText(user.getLastName());
                         binding.course.setText(String.format("%s %s", getString(R.string.course), user.getCourse()));
-                        binding.expire.setText(String.format("%s %s", getString(R.string.expire), fmtOut.format(new Date(user.getExpire() * 1000))));
+                        binding.expire.setText(String.format("%s %s", getString(R.string.expire), fmtOut.format(new Date(user.getExpire()))));
+
+                        binding.main.setVisibility(View.VISIBLE);
+                        binding.shimmer.setVisibility(View.GONE);
+                        binding.shimmer.hideShimmer();
+
+                        binding.barcode.setText(String.format("%s%s", UniCode.PREFIXES[0], fixNumber(user.getId(), 7)));
+
                         binding.imageBarcode.post(() -> {
                             binding.imageBarcode.setVisibility(View.VISIBLE);
                             binding.progress.setVisibility(View.GONE);

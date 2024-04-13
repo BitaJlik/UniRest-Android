@@ -12,7 +12,7 @@ import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentProfileBinding;
 import com.unirest.ui.common.BaseFragment;
 import com.unirest.ui.fragments.login.FragmentLogin;
-import com.unirest.ui.fragments.profile.information.FragmentProfileInfo;
+import com.unirest.ui.fragments.profile.information.FragmentProfileEdit;
 import com.unirest.ui.fragments.settings.FragmentSettings;
 
 public class FragmentProfile extends BaseFragment<FragmentProfileBinding> {
@@ -30,7 +30,7 @@ public class FragmentProfile extends BaseFragment<FragmentProfileBinding> {
                 }
 
                 binding.personalInfo.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                    changeFragment(new FragmentProfileInfo(), true);
+                    changeFragment(new FragmentProfileEdit(), true);
                     enableButton.call(true);
                 });
 

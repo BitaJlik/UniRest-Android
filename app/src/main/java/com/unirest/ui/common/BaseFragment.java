@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
@@ -63,6 +64,10 @@ public abstract class BaseFragment<Binding extends ViewBinding> extends Fragment
     @NonNull
     public final ActivityMain getActivityMain() {
         return ((ActivityMain) requireActivity());
+    }
+
+    public <T extends ViewModel> T initViewModel(Class<T> tClass) {
+        return new ViewModelProvider(requireActivity()).get(tClass);
     }
 
     @Override

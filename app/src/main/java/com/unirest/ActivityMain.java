@@ -92,7 +92,7 @@ public class ActivityMain extends AppCompatActivity {
         MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         String tokenValue = mainViewModel.token.getValue();
         if (tokenValue != null) {
-            DataNetHandler.getInstance().getUser(tokenValue, mainViewModel.user::postValue);
+            DataNetHandler.getInstance().getUser(tokenValue, mainViewModel.user::setValue);
             DataLocalHandler.getInstance(this).saveUser();
         }
     }

@@ -63,4 +63,21 @@
     <string name="permit">Permit</string>
     <string name="success_upload">Success upload</string>
     <string name="fail_upload">Failed upload</string>
+    <string name="short_name">Short name</string>
+    <string name="call_to_me">Call to me</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="send">Send</string>
+    <string name="call_to_me_now">Call to me now</string>
+    <string name="add_to_notify">Add to list</string>
+    <string name="dialog_add_user_notification">Add user to list for future create and send message</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="dialog_call_user_now">Call user now without creating message</string>
+    <string name="you_calling_commandant">You calling commandant</string>
+    <string name="new_alert">New alert</string>
+    <string name="sent">Sent</string>
+    <string name="error">Error</string>
+    <string name="date">Date</string>
+    <string name="author">Author</string>
 </resources>

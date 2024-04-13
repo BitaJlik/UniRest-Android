@@ -61,4 +61,23 @@
     <string name="call_on_phone">Зателефонувати</string>
     <string name="expire">Закінчується</string>
     <string name="permit">Перепустка</string>
+    <string name="success_upload">Успішне завантаження</string>
+    <string name="fail_upload">Помилка завантаження</string>
+    <string name="short_name">Коротке ім\'я</string>
+    <string name="call_to_me">Запросити до мене</string>
+    <string name="title">Назва</string>
+    <string name="content">Зміст</string>
+    <string name="send">Надіслати</string>
+    <string name="call_to_me_now">Запросити зараз</string>
+    <string name="add_to_notify">Додати до списку</string>
+    <string name="dialog_add_user_notification">Додати користувача до списку для майбутнього повідомленя. Повідомлення можна створити та надіслати в меню профіля</string>
+    <string name="cancel">Скасувати</string>
+    <string name="confirm">Підтвердити</string>
+    <string name="dialog_call_user_now">Запросити користувача, не створюючи повідомлення</string>
+    <string name="you_calling_commandant">Комендант запрошує Вас до себе</string>
+    <string name="new_alert">Нове сповіщення</string>
+    <string name="sent">Надіслано</string>
+    <string name="error">Помилка</string>
+    <string name="date">Дата</string>
+    <string name="author">Автор</string>
 </resources>

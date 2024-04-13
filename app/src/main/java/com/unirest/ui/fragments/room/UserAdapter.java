@@ -2,12 +2,12 @@ package com.unirest.ui.fragments.room;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.TooltipCompat;
-import androidx.core.content.ContextCompat;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.unirest.R;
 import com.unirest.api.ICallback;
@@ -20,6 +20,8 @@ import com.unirest.databinding.ItemUserBinding;
 public class UserAdapter extends BaseAdapter<User> {
     private static ICallback<User> userICallback;
 
+    private static ICallback<User> addUserToNotifyCallback;
+    private static ICallback<User> callToMeCallbackNow;
     private static ICallback<User> phoneLongCallback;
     private static ICallback<User> emailLongCallback;
 
@@ -46,32 +48,69 @@ public class UserAdapter extends BaseAdapter<User> {
             binding.phone.setText(user.getPhoneNumber());
             binding.email.setText(user.getEmail());
 
-            binding.getRoot().setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                if (userICallback != null) {
+            if (userICallback != null) {
+                binding.getRoot().setOnClickListener((OnClickCallback) (v, enableButton) -> {
                     userICallback.call(user);
-                }
-                enableButton.call(true);
-            });
+                    enableButton.call(true);
+                });
+            }
 
             DataNetHandler.getInstance().getUrlImageUser(user, url -> {
-                Picasso.get().load(url).into(binding.image);
+                Picasso.get().load(url).into(binding.image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        binding.image.setVisibility(View.VISIBLE);
+                        binding.progress.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        binding.progress.setVisibility(View.GONE);
+                        binding.imageError.setVisibility(View.VISIBLE);
+                    }
+                });
             });
 
+
+            TooltipCompat.setTooltipText(binding.hereImage, context.getString(R.string.call_to_me));
             TooltipCompat.setTooltipText(binding.phoneImage, context.getString(R.string.call_on_phone));
             TooltipCompat.setTooltipText(binding.emailImage, context.getString(R.string.text_on_email));
 
-            binding.phoneImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                if (phoneLongCallback != null) {
+            binding.hereImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                PopupMenu popupMenu = new PopupMenu(context, binding.hereImage);
+                if (callToMeCallbackNow != null) {
+                    popupMenu.getMenu().add(0, 0, 0, context.getString(R.string.call_to_me_now));
+                }
+                if (addUserToNotifyCallback != null) {
+                    popupMenu.getMenu().add(0, 1, 0, context.getString(R.string.add_to_notify));
+                }
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    if (item.getItemId() == 0) {
+                        callToMeCallbackNow.call(user);
+                    }
+                    if (item.getItemId() == 1) {
+
+                        addUserToNotifyCallback.call(user);
+                    }
+                    return true;
+                });
+
+                popupMenu.show();
+                enableButton.call(true);
+            });
+
+            if (phoneLongCallback != null) {
+                binding.phoneImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
                     phoneLongCallback.call(user);
                     enableButton.call(true);
-                }
-            });
-            binding.emailImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                if (emailLongCallback != null) {
+                });
+            }
+            if (emailLongCallback != null) {
+                binding.emailImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
                     emailLongCallback.call(user);
                     enableButton.call(true);
-                }
-            });
+                });
+            }
         }
 
     }
@@ -86,6 +125,14 @@ public class UserAdapter extends BaseAdapter<User> {
 
     public void setUserICallback(ICallback<User> userICallback) {
         UserAdapter.userICallback = userICallback;
+    }
+
+    public void setAddUserToNotifyCallback(ICallback<User> addUserToNotifyCallback) {
+        UserAdapter.addUserToNotifyCallback = addUserToNotifyCallback;
+    }
+
+    public void setCallToMeCallbackNow(ICallback<User> callToMeCallbackNow) {
+        UserAdapter.callToMeCallbackNow = callToMeCallbackNow;
     }
 }
 

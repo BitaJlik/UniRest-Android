@@ -15,20 +15,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/overlay"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
-                    android:paddingVertical="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingVertical="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -36,7 +39,7 @@
                         android:layout_marginHorizontal="10dp"
                         android:gravity="center"
                         android:text="@string/permit"
-                        android:textColor="@color/light_white_stroke"
+                        android:textColor="@color/light_white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -58,30 +61,30 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="5dp"
                             android:id="@+id/name"
-                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Hello, name"
                             android:textColor="@color/light_white"
-                            android:textSize="22sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/surname"
+                            android:id="@+id/lastName"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:textStyle="bold"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Hello, name"
                             android:textColor="@color/light_white"
-                            android:textSize="22sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/course"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="5dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Course: 3"
                             android:textColor="@color/light_white"
                             android:textSize="18sp" />
@@ -89,8 +92,8 @@
                         <TextView
                             android:id="@+id/expire"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="5dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Expire at: 29.06"
                             android:textColor="@color/light_white"
                             android:textSize="18sp" />
@@ -115,8 +118,8 @@
                             <ImageView
                                 android:id="@+id/image_barcode"
                                 android:layout_width="match_parent"
-                                android:layout_height="100dp"
-                                android:minHeight="100dp"
+                                android:layout_height="128dp"
+                                android:minHeight="128dp"
                                 android:visibility="invisible" />
 
                             <LinearLayout
@@ -148,10 +151,152 @@
 
                     </com.google.android.material.card.MaterialCardView>
 
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="@color/light_white_stroke"
+                        android:id="@+id/barcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:shimmer_auto_start="true">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    app:cardBackgroundColor="@color/overlay"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:gravity="center"
+                            android:text="@string/permit"
+                            android:textColor="@color/light_white_stroke"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ProgressBar
+                            android:layout_width="192dp"
+                            android:layout_height="192dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="15dp"
+                            android:indeterminateTint="@color/second"
+                            android:padding="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/name"
+                                android:textColor="@color/light_white"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/second_name"
+                                android:textColor="@color/light_white"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/course"
+                                android:textColor="@color/light_white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/expire"
+                                android:textColor="@color/light_white"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="45dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardBackgroundColor="@color/overlay_light"
+                            app:strokeWidth="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:animateLayoutChanges="true"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:minHeight="100dp"
+                                    android:visibility="invisible" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:animateLayoutChanges="true"
+                                    android:orientation="vertical">
+
+                                    <ProgressBar
+                                        android:layout_width="72dp"
+                                        android:layout_height="72dp"
+                                        android:indeterminateTint="@color/second"
+                                        android:padding="10dp" />
+
+                                    <ImageView
+                                        android:layout_width="64dp"
+                                        android:layout_height="64dp"
+                                        android:src="@drawable/ic_error"
+                                        android:visibility="gone"
+                                        app:tint="@color/second" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </LinearLayout>
 

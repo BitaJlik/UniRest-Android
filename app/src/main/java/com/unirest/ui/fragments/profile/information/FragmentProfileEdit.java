@@ -1,14 +1,15 @@
 package com.unirest.ui.fragments.profile.information;
 
-import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.Selection;
 import android.text.TextWatcher;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.EditText;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -17,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.unirest.R;
 import com.unirest.api.OnClickCallback;
@@ -37,11 +39,11 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 
-public class FragmentProfileInfo extends BaseFragment<FragmentProfileEditBinding> {
+public class FragmentProfileEdit extends BaseFragment<FragmentProfileEditBinding> {
     ActivityResultLauncher<String> imagePickerLauncher;
     private User user;
 
-    public FragmentProfileInfo() {
+    public FragmentProfileEdit() {
         super(FragmentProfileEditBinding.class);
     }
 
@@ -109,8 +111,39 @@ public class FragmentProfileInfo extends BaseFragment<FragmentProfileEditBinding
                 });
 
                 DataNetHandler.getInstance().getUrlImageUser(user, url -> {
-                    Picasso.get().load(url).into(binding.image);
+                    Picasso.get().load(url).into(binding.image, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            binding.progress.setVisibility(View.GONE);
+                            binding.image.setVisibility(View.VISIBLE);
+                        }
 
+                        @Override
+                        public void onError(Exception e) {
+                            binding.progress.setVisibility(View.GONE);
+                            binding.imageError.setVisibility(View.VISIBLE);
+                        }
+                    });
+                });
+
+                final EditText edt = binding.layoutPhone.getEditText();
+
+                edt.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if (!s.toString().startsWith("380")) {
+                            edt.setText("380");
+                            Selection.setSelection(edt.getText(), edt.getText().length());
+                        }
+                    }
                 });
 
                 binding.layoutPassword.getEditText().addTextChangedListener(new TextWatcher() {

@@ -2,9 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -18,48 +20,80 @@
             android:textColor="@color/light_white"
             android:textSize="20sp" />
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemsRV"
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            tools:listitem="@layout/item_floor" />
+            android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:alpha="0.4"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingVertical="15dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itemsRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                tools:listitem="@layout/item_floor" />
 
-            <TextView
-                android:id="@+id/cooker"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_cooker"
-                android:drawablePadding="5dp"
-                android:drawableTint="@color/orange_light"
-                android:text="@string/count_cookers"
-                android:textColor="@color/light_white"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/washing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:drawableLeft="@drawable/ic_washer"
-                android:drawablePadding="5dp"
-                android:drawableTint="@color/blue_light"
-                android:text="@string/count_washers"
-                android:textColor="@color/light_white"
-                android:textSize="18sp" />
+                android:alpha="0.4"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingVertical="15dp">
+
+                <TextView
+                    android:id="@+id/cooker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_cooker"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/orange_light"
+                    android:text="@string/count_cookers"
+                    android:textColor="@color/light_white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/washing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_washer"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/blue_light"
+                    android:text="@string/count_washers"
+                    android:textColor="@color/light_white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer"
+            app:shimmer_auto_start="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/item_floor" />
+                <include layout="@layout/item_floor" />
+                <include layout="@layout/item_floor" />
+                <include layout="@layout/item_floor" />
+                <include layout="@layout/item_floor" />
+                <include layout="@layout/item_floor" />
+                <include layout="@layout/item_floor" />
+                <include layout="@layout/item_floor" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </LinearLayout>
 </ScrollView>

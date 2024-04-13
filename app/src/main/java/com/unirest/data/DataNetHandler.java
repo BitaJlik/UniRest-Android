@@ -10,6 +10,8 @@ import com.unirest.api.BaseCallback;
 import com.unirest.api.ICallback;
 import com.unirest.data.models.ErrorMessage;
 import com.unirest.data.models.Floor;
+import com.unirest.data.models.Notification;
+import com.unirest.data.models.NotificationRequest;
 import com.unirest.data.models.Room;
 import com.unirest.data.models.User;
 import com.unirest.data.models.UserPermit;
@@ -114,6 +116,18 @@ public class DataNetHandler {
                 }
             });
         }
+    }
+
+    public void readNotification(Long notification) {
+        ApiServices coreServices = retrofitMain.create(ApiServices.class);
+        coreServices.read(notification).enqueue((BaseCallback<ResponseBody>) (response, jsonString) -> {
+        });
+    }
+
+    public void receiveNotification(Long notification) {
+        ApiServices coreServices = retrofitMain.create(ApiServices.class);
+        coreServices.receive(notification).enqueue((BaseCallback<ResponseBody>) (response, jsonString) -> {
+        });
     }
 
     public void checkEmail(String email, ICallback<Boolean> isEmailFree) {
@@ -240,6 +254,39 @@ public class DataNetHandler {
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 BaseCallback.super.onFailure(call, t);
                 call(callback, false);
+            }
+        });
+    }
+
+    public void callToMe(Long userId, NotificationRequest request, ICallback<Boolean> sentCallback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.callToMe(userId, RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(request))).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(sentCallback, true);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(sentCallback, false);
+            }
+        });
+    }
+
+    public void getNotifications(Long userId, ICallback<List<Notification>> notificationsCall) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getNotifications(userId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(notificationsCall, new Gson().fromJson(jsonString, new TypeToken<List<Notification>>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(notificationsCall, null);
             }
         });
     }
