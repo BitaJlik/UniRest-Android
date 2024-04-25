@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unirest.api.BaseCallback;
 import com.unirest.api.ICallback;
+import com.unirest.data.models.Dormitory;
 import com.unirest.data.models.ErrorMessage;
 import com.unirest.data.models.Floor;
 import com.unirest.data.models.Notification;
@@ -36,7 +37,7 @@ import retrofit2.Retrofit;
 public class DataNetHandler {
     private static final String tag = "DataNetHandler";
     // private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("https://unirest.site/").build(); // TODO: 16.03.2024
-    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.0.111:11111/").build();
+    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.43.240:11111/").build();
     // >>> Hash verify
     private long lastVerify = 0;
     // <<< Hash verify
@@ -258,6 +259,13 @@ public class DataNetHandler {
         });
     }
 
+    public void updateStatus(Long userId) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.updateStatus(userId).enqueue((BaseCallback<ResponseBody>) (response, jsonString) -> {
+
+        });
+    }
+
     public void callToMe(Long userId, NotificationRequest request, ICallback<Boolean> sentCallback) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         apiServices.callToMe(userId, RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(request))).enqueue(new BaseCallback<ResponseBody>() {
@@ -287,6 +295,22 @@ public class DataNetHandler {
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 BaseCallback.super.onFailure(call, t);
                 call(notificationsCall, null);
+            }
+        });
+    }
+
+    public void getDormitoryInfo(Long dormitoryId, ICallback<Dormitory> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getDormitory(dormitoryId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, Dormitory.class));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
             }
         });
     }

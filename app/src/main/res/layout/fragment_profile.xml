@@ -16,70 +16,133 @@
         android:layout_marginTop="40dp"
         android:src="@drawable/unirest_white" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="60dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingHorizontal="30dp">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/personalInfo"
-            style="@style/defaultMaterialButtonOutline"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/personal_information"
-            app:icon="@drawable/ic_personal"
-            app:iconSize="24dp"
-            app:iconTint="@color/light_white" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/payments"
-            style="@style/defaultMaterialButtonOutline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/my_payments"
-            app:icon="@drawable/ic_payment"
-            app:iconSize="24dp"
-            app:iconTint="@color/light_white" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/personalInfo"
+                style="@style/defaultMaterialButtonOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/personal_information"
+                app:icon="@drawable/ic_personal"
+                app:iconSize="24dp"
+                app:iconTint="@color/light_white" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/personalList"
-            style="@style/defaultMaterialButtonOutline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/personal_list"
-            app:icon="@drawable/ic_personal_list"
-            app:iconSize="24dp"
-            app:iconTint="@color/light_white" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="5dp"
+                android:text="@string/profile_personalInfo"
+                android:textColor="@color/light_white_stroke" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/settings"
-            style="@style/defaultMaterialButtonOutline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/settings"
-            app:icon="@drawable/ic_settings"
-            app:iconSize="24dp"
-            app:iconTint="@color/light_white" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments"
+                style="@style/defaultMaterialButtonOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/my_payments"
+                app:icon="@drawable/ic_payment"
+                app:iconSize="24dp"
+                app:iconTint="@color/light_white" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/logout"
-            style="@style/defaultMaterialButtonOutline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/log_out"
-            app:icon="@drawable/ic_logout"
-            app:iconSize="24dp"
-            app:iconTint="@color/light_white" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="5dp"
+                android:text="@string/profile_paymentsInfo"
+                android:textColor="@color/light_white_stroke" />
 
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/notification_edit"
+                style="@style/defaultMaterialButtonOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/notification_editor"
+                app:icon="@drawable/ic_notification"
+                app:iconSize="24dp"
+                app:iconTint="@color/light_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="5dp"
+                android:text="@string/profile_notificationEditorInfo"
+                android:textColor="@color/light_white_stroke" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/personalList"
+                style="@style/defaultMaterialButtonOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/personal_list"
+                app:icon="@drawable/ic_personal_list"
+                app:iconSize="24dp"
+                app:iconTint="@color/light_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="5dp"
+                android:text="@string/profile_personalListInfo"
+                android:textColor="@color/light_white_stroke" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/settings"
+                style="@style/defaultMaterialButtonOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/settings"
+                app:icon="@drawable/ic_settings"
+                app:iconSize="24dp"
+                app:iconTint="@color/light_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="5dp"
+                android:text="@string/profile_settingsInfo"
+                android:textColor="@color/light_white_stroke" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logout"
+                style="@style/defaultMaterialButtonOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/log_out"
+                app:icon="@drawable/ic_logout"
+                app:iconSize="24dp"
+                app:iconTint="@color/light_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="5dp"
+                android:text="@string/profile_logoutInfo"
+                android:textColor="@color/light_white_stroke" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -1,7 +1,6 @@
 package com.unirest;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -16,7 +15,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.unirest.api.IBackPressed;
-import com.unirest.api.ICallback;
 import com.unirest.api.IReload;
 import com.unirest.data.DataLocalHandler;
 import com.unirest.data.DataNetHandler;
@@ -92,7 +90,10 @@ public class ActivityMain extends AppCompatActivity {
         MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         String tokenValue = mainViewModel.token.getValue();
         if (tokenValue != null) {
-            DataNetHandler.getInstance().getUser(tokenValue, mainViewModel.user::setValue);
+            DataNetHandler.getInstance().getUser(tokenValue, user -> {
+                mainViewModel.user.setValue(user);
+                DataNetHandler.getInstance().updateStatus(user.getId());
+            });
             DataLocalHandler.getInstance(this).saveUser();
         }
     }
@@ -117,7 +118,6 @@ public class ActivityMain extends AppCompatActivity {
             }
         }
         runOnUiThread(() -> {
-
             if (!addToBackStack) {
                 FragmentManager fm = getSupportFragmentManager();
                 for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {

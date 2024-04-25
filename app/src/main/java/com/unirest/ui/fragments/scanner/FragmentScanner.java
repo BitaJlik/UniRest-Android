@@ -14,6 +14,7 @@ import com.unirest.api.ICallback;
 import com.unirest.api.UniCode;
 import com.unirest.databinding.FragmentScannerBinding;
 import com.unirest.ui.common.BaseFragment;
+import com.unirest.ui.fragments.home.FragmentHome;
 import com.unirest.ui.fragments.permit.FragmentUserPermit;
 
 import java.util.Collections;
@@ -50,9 +51,8 @@ public class FragmentScanner extends BaseFragment<FragmentScannerBinding> {
                     } else {
                         UniCode uniCode = new UniCode(code);
                         if (uniCode.isValid() && uniCode.isCodeUser()) {
-                            requireActivity().onBackPressed();
+                            changeFragment(new FragmentHome());
                             changeFragment(new FragmentUserPermit(), true);
-                            // TODO: 10.04.2024 Show permit fragment
                         } else if (uniCode.isValid() && uniCode.isCodeCooker()) {
                             // TODO: 10.04.2024 Show cooker fragment
                         } else if (uniCode.isValid() && uniCode.isCodeWashing()) {

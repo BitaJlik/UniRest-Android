@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unirest.R;
 import com.unirest.api.OnClickCallback;
@@ -128,6 +129,7 @@ public class FragmentRegister extends BaseFragment<FragmentRegisterBinding> {
                 DataNetHandler.getInstance().register(email, encryptSHA256(password), token -> {
                     ui(() -> {
                         mainViewModel.token.setValue(token);
+                        Snackbar.make(v, R.string.success_registration_going_to_profile, Snackbar.LENGTH_LONG).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).show();
                         DataLocalHandler.getInstance().saveToken();
                         AsyncUtils.waitAsync(1500, () -> {
                             ui(() -> {

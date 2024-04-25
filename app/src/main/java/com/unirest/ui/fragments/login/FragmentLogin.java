@@ -1,12 +1,16 @@
 package com.unirest.ui.fragments.login;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.zxing.common.StringUtils;
 import com.unirest.R;
 import com.unirest.api.IBackPressed;
 import com.unirest.api.OnClickCallback;
@@ -54,24 +58,33 @@ public class FragmentLogin extends BaseFragment<FragmentLoginBinding> implements
             AsyncUtils.async(() -> {
                 String email = binding.layoutEmail.getEditText().getText().toString();
                 String password = binding.layoutPassword.getEditText().getText().toString();
-                DataNetHandler.getInstance().login(email, encryptSHA256(password), token -> {
-                    ui(() -> {
-                        mainViewModel.token.setValue(token);
-                        DataLocalHandler.getInstance().saveToken();
-                        AsyncUtils.waitAsync(1500, () -> {
-                            ui(() -> {
-                                enableButton.call(true);
-                            });
-                            changeFragment(new FragmentProfile());
-                        });
-                    });
-                }, error -> {
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
                     ui(() -> {
                         enableButton.call(true);
                         binding.layoutInputs.setVisibility(View.VISIBLE);
                         binding.layoutProgress.setVisibility(View.GONE);
+                        Snackbar.make(v, R.string.inputs_cant_be_empty, Snackbar.LENGTH_LONG).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).show();
                     });
-                });
+                } else {
+                    DataNetHandler.getInstance().login(email, encryptSHA256(password), token -> {
+                        ui(() -> {
+                            mainViewModel.token.setValue(token);
+                            DataLocalHandler.getInstance().saveToken();
+                            AsyncUtils.waitAsync(1500, () -> {
+                                ui(() -> {
+                                    enableButton.call(true);
+                                });
+                                changeFragment(new FragmentProfile());
+                            });
+                        });
+                    }, error -> {
+                        ui(() -> {
+                            enableButton.call(true);
+                            binding.layoutInputs.setVisibility(View.VISIBLE);
+                            binding.layoutProgress.setVisibility(View.GONE);
+                        });
+                    });
+                }
             });
         });
 

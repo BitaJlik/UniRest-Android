@@ -1,11 +1,13 @@
 package com.unirest.data.models;
 
+import com.google.gson.annotations.SerializedName;
 import com.unirest.api.recycler.IDiff;
 
 import java.util.List;
 
 public class Room implements IDiff<Room> {
     private Long id;
+    @SerializedName(value = "number", alternate = "roomNumber")
     private int number;
     private int beds;
     private String notes;

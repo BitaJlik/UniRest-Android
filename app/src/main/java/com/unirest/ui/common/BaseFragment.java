@@ -41,8 +41,8 @@ public abstract class BaseFragment<Binding extends ViewBinding> extends Fragment
     @NonNull
     @Override
     public final View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        errorViewModel = new ViewModelProvider(requireActivity()).get(ErrorViewModel.class);
+        mainViewModel = initViewModel(MainViewModel.class);
+        errorViewModel = initViewModel(ErrorViewModel.class);
         try {
             binding = (Binding) bindingClass.getDeclaredMethod("inflate", LayoutInflater.class).invoke(null, inflater);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {

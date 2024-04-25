@@ -1,6 +1,7 @@
 package com.unirest.ui.fragments.room;
 
 import android.content.Context;
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ import com.unirest.api.recycler.BaseAdapter;
 import com.unirest.data.DataNetHandler;
 import com.unirest.data.models.User;
 import com.unirest.databinding.ItemUserBinding;
+
+import java.util.Locale;
 
 public class UserAdapter extends BaseAdapter<User> {
     private static ICallback<User> userICallback;
@@ -45,7 +48,7 @@ public class UserAdapter extends BaseAdapter<User> {
             binding.surname.setText(user.getSurName());
             binding.balance.setText(String.format("%s: %s", context.getString(R.string.balance), user.getBalance()));
             binding.course.setText(String.format("%s: %s", context.getString(R.string.course), user.getCourse()));
-            binding.phone.setText(user.getPhoneNumber());
+            binding.phone.setText(String.format("+%s", PhoneNumberUtils.formatNumber(user.getPhoneNumber(), Locale.getDefault().getCountry())));
             binding.email.setText(user.getEmail());
 
             if (userICallback != null) {
@@ -89,7 +92,6 @@ public class UserAdapter extends BaseAdapter<User> {
                         callToMeCallbackNow.call(user);
                     }
                     if (item.getItemId() == 1) {
-
                         addUserToNotifyCallback.call(user);
                     }
                     return true;

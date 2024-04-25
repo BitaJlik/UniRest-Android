@@ -66,7 +66,14 @@ public interface ApiServices {
 
     @POST("notification/read")
     Call<ResponseBody> read(@Query("id") Long id);
+
     @POST("notification/receive")
     Call<ResponseBody> receive(@Query("id") Long id);
+
+    @GET("dormitory/get")
+    Call<ResponseBody> getDormitory(@Query("id") Long id);
+
+    @POST("user/update/status")
+    Call<ResponseBody> updateStatus(@Query("id") Long id);
 
 }

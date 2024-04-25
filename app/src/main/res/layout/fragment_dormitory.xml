@@ -1,91 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="15dp">
-
-    <TextView
-        android:id="@+id/text_dormitory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="My dormitory"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/text_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="Dormitory address"
-        android:textColor="@color/light_white"
-        android:textSize="16sp" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:paddingVertical="10dp"
-        app:cardBackgroundColor="@color/overlay"
-        app:cardCornerRadius="8dp"
-        app:strokeWidth="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/text_commandant_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:text="Commandant name"
-                android:textColor="@color/light_white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Commandant"
-                android:textColor="@color/light_white" />
-
-            <TextView
-                android:id="@+id/text_commandant_last_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:text="Last seen 17:44"
-                android:textColor="@color/light_white"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/text_commandant_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Commandant phone"
-                android:textColor="@color/light_white"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    android:layout_height="wrap_content"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="15dp">
+
+        <TextView
+            android:id="@+id/text_dormitory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/name"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/text_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Dormitory address"
+            android:textColor="@color/light_white"
+            android:textSize="16sp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:paddingVertical="10dp"
             app:cardBackgroundColor="@color/overlay"
             app:cardCornerRadius="8dp"
             app:strokeWidth="0dp">
@@ -94,128 +43,214 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="10dp">
+                android:padding="10dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/text_commandant_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mini statistics"
+                    android:layout_marginVertical="5dp"
+                    android:text="@string/name"
                     android:textColor="@color/light_white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/text_dormitory_total_floors"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Total floors: 7"
-                    android:textColor="@color/light_white"
-                    android:textSize="15sp" />
+                    android:text="@string/commandant"
+                    android:textColor="@color/light_white" />
 
                 <TextView
-                    android:id="@+id/text_dormitory_has_elevator"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Elevator: yes"
-                    android:textColor="@color/light_white"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/text_dormitory_cooker_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Cookers: electrical"
-                    android:textColor="@color/light_white"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/text_dormitory_total_beds"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Total beds: 459"
-                    android:textColor="@color/light_white"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/text_dormitory_taken_beds"
-                    android:layout_width="match_parent"
+                    android:id="@+id/text_commandant_last_time"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:text="Taken beds: 440"
+                    android:text="@string/last_active"
                     android:textColor="@color/light_white"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/text_dormitory_free_beds"
-                    android:layout_width="match_parent"
+                    android:id="@+id/text_commandant_phone"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Free beds: 19"
+                    android:text="@string/phone"
                     android:textColor="@color/light_white"
                     android:textSize="15sp" />
-
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/overlay"
+                app:cardCornerRadius="8dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mini_statistics"
+                        android:textColor="@color/light_white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text_dormitory_total_floors"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/floors"
+                        android:textColor="@color/light_white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/text_dormitory_has_elevator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/elevator_no"
+                        android:textColor="@color/light_white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/text_dormitory_cooker_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/cookers"
+                        android:textColor="@color/light_white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/text_dormitory_total_beds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/total_beds"
+                        android:textColor="@color/light_white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/text_dormitory_taken_beds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:text="@string/total_taken_beds"
+                        android:textColor="@color/light_white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/text_dormitory_free_beds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_free_beds"
+                        android:textColor="@color/light_white"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/callCommandant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:text="@string/contact_with_commandant"
+                app:icon="@drawable/ic_phone"
+                app:iconSize="22dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/additionalPhones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:text="@string/additional_phones"
+                app:icon="@drawable/ic_phone_book"
+                app:iconSize="22dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/moderateRequests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:text="@string/moderate_requests"
+                android:visibility="gone"
+                app:icon="@drawable/ic_document_moderate"
+                app:iconSize="22dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/moderatePayments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:text="@string/moderate_payments"
+                android:visibility="gone"
+                app:icon="@drawable/ic_payment"
+                app:iconSize="22dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/createRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:text="@string/leave_request"
+                app:icon="@drawable/ic_file_edit"
+                app:iconSize="22dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/floors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:drawableTint="@color/white"
+                android:text="@string/floors"
+                app:icon="@drawable/ic_list"
+                app:iconSize="22dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="7dp"
-            android:layout_weight="1"
-            android:autoSizeTextType="uniform"
-            android:text="@string/contact_with_commandant"
-            app:icon="@drawable/ic_phone" />
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="1"
-            android:text="@string/additional_phones"
-            app:icon="@drawable/ic_phone_book" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="1"
-            android:text="@string/leave_request"
-            app:icon="@drawable/ic_file_edit" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/floors"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="1"
-            android:drawableTint="@color/white"
-            android:text="@string/floors"
-            app:icon="@drawable/ic_list" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
