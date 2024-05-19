@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/select_floor"
-            android:textColor="@color/light_white"
+            android:textColor="@color/text_primary"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -52,7 +52,7 @@
                     android:drawablePadding="5dp"
                     android:drawableTint="@color/orange_light"
                     android:text="@string/count_cookers"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp" />
 
                 <TextView
@@ -64,7 +64,7 @@
                     android:drawablePadding="5dp"
                     android:drawableTint="@color/blue_light"
                     android:text="@string/count_washers"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp" />
 
             </LinearLayout>

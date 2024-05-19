@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="20sp" />
 
                 <TextView
@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Course: 3"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp" />
 
                 <TextView
@@ -65,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Expire at: 29.06"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp" />
 
             </LinearLayout>

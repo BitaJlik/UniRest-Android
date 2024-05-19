@@ -65,5 +65,8 @@ dependencies {
 
     implementation("com.github.aabhasr1:OtpView:v1.1.2")
 
+    // Zoom imageview
+    implementation("com.jsibbold:zoomage:1.3.1")
+
     implementation(fileTree("libs"))
 }

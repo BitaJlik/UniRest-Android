@@ -16,7 +16,6 @@ public class User implements IDiff<User> {
     private int course;
     private String phoneNumber;
     private boolean emailVerified;
-    private String userNotes;
     private long expire;
     public Room room;
 
@@ -126,13 +125,7 @@ public class User implements IDiff<User> {
         this.emailVerified = emailVerified;
     }
 
-    public String getUserNotes() {
-        return userNotes;
-    }
 
-    public void setUserNotes(String userNotes) {
-        this.userNotes = userNotes;
-    }
 
     public Room getRoom() {
         return room;

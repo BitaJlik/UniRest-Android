@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/personal_information"
-        android:textColor="@color/light_white"
+        android:textColor="@color/text_primary"
         android:textSize="18sp" />
 
     <ScrollView
@@ -52,7 +52,7 @@
                         android:padding="32dp"
                         android:src="@drawable/ic_error"
                         android:visibility="gone"
-                        app:tint="@color/light_white" />
+                        app:tint="@color/text_primary" />
 
                     <ProgressBar
                         android:id="@+id/progress"
@@ -94,7 +94,7 @@
                     android:layout_height="match_parent"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +112,7 @@
                     android:layout_height="match_parent"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,7 +130,7 @@
                     android:layout_height="match_parent"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +148,7 @@
                     android:layout_height="match_parent"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +166,7 @@
                     android:layout_height="match_parent"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,7 +185,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="phone"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -203,7 +203,7 @@
                     android:layout_height="match_parent"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -222,7 +222,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="numberSigned"
                     android:singleLine="true"
-                    android:textColor="@color/light_white" />
+                    android:textColor="@color/text_primary" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -248,7 +248,7 @@
                         android:layout_height="match_parent"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:textColor="@color/light_white" />
+                        android:textColor="@color/text_primary" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -267,7 +267,7 @@
                         android:layout_height="match_parent"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:textColor="@color/light_white" />
+                        android:textColor="@color/text_primary" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

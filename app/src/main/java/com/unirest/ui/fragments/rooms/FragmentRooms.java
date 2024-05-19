@@ -7,10 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.unirest.api.ICallback;
+import com.unirest.api.OnClickCallback;
 import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentRoomsBinding;
 import com.unirest.ui.common.BaseFragment;
+import com.unirest.ui.fragments.cookers.FragmentCookers;
 import com.unirest.ui.fragments.room.FragmentRoom;
+import com.unirest.ui.fragments.washers.FragmentWashers;
 
 public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
     private final RoomAdapter adapter = new RoomAdapter();
@@ -29,6 +33,26 @@ public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
                 if (token == null || floor == null) return;
                 DataNetHandler.getInstance().verifyAuth(token, isVerified -> {
                     if (isVerified) {
+
+                        if (floor.getWashers().isEmpty()) {
+                            binding.washers.setVisibility(View.GONE);
+                        } else {
+                            binding.washers.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                                changeFragment(new FragmentWashers(), true);
+                                enableButton.call(true);
+                            });
+                        }
+
+                        if (floor.getCookers().isEmpty()) {
+                            binding.cookers.setVisibility(View.GONE);
+                        } else {
+                            binding.cookers.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                                changeFragment(new FragmentCookers(), true);
+                                enableButton.call(true);
+                            });
+                        }
+
+
                         DataNetHandler.getInstance().getRooms(floor.getId(), rooms -> {
                             if (rooms.isEmpty()) return;
 

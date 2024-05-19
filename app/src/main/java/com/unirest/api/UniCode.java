@@ -1,7 +1,10 @@
 package com.unirest.api;
 
 public class UniCode {
-    public static final String[] PREFIXES = {"U", "C", "W"}; // User, Cooker, Washing
+    public static final String PREFIX_USER = "U";
+    public static final String PREFIX_COOKER = "C";
+    public static final String PREFIX_WASHER = "W";
+    public static final String[] PREFIXES = {PREFIX_USER, PREFIX_COOKER, PREFIX_WASHER}; // User, Cooker, Washer
     //
     private String prefix;
     private long value;

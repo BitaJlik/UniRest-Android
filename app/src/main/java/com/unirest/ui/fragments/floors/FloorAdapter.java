@@ -33,8 +33,14 @@ public class FloorAdapter extends BaseAdapter<Floor> {
         public void bind(Floor floor) {
             Context context = itemView.getContext();
             binding.text.setText(String.format("%s %s", floor.getNumber(), context.getString(R.string.floor)));
+            if (floor.getCookers().isEmpty()) {
+                binding.cooker.setVisibility(View.GONE);
+            }
+            if (floor.getWashers().isEmpty()) {
+                binding.washing.setVisibility(View.GONE);
+            }
             binding.cooker.setText(String.valueOf(floor.getCookers().size()));
-            binding.washing.setText(String.valueOf(floor.getCookers().size()));
+            binding.washing.setText(String.valueOf(floor.getWashers().size()));
             binding.shortName.setText(floor.getShortName());
             binding.rooms.setText(String.format("%s - %s", floor.getMinRoomNumber(), floor.getMaxRoomNumber()));
 

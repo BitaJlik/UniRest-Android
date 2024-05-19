@@ -36,7 +36,7 @@
                 android:text="@string/personal_information"
                 app:icon="@drawable/ic_personal"
                 app:iconSize="24dp"
-                app:iconTint="@color/light_white" />
+                app:iconTint="@color/text_primary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="5dp"
                 android:text="@string/profile_personalInfo"
-                android:textColor="@color/light_white_stroke" />
+                android:textColor="@color/text_primary_half" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/payments"
@@ -55,7 +55,7 @@
                 android:text="@string/my_payments"
                 app:icon="@drawable/ic_payment"
                 app:iconSize="24dp"
-                app:iconTint="@color/light_white" />
+                app:iconTint="@color/text_primary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="5dp"
                 android:text="@string/profile_paymentsInfo"
-                android:textColor="@color/light_white_stroke" />
+                android:textColor="@color/text_primary_half" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/notification_edit"
@@ -74,7 +74,7 @@
                 android:text="@string/notification_editor"
                 app:icon="@drawable/ic_notification"
                 app:iconSize="24dp"
-                app:iconTint="@color/light_white" />
+                app:iconTint="@color/text_primary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="5dp"
                 android:text="@string/profile_notificationEditorInfo"
-                android:textColor="@color/light_white_stroke" />
+                android:textColor="@color/text_primary_half" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/personalList"
@@ -93,7 +93,7 @@
                 android:text="@string/personal_list"
                 app:icon="@drawable/ic_personal_list"
                 app:iconSize="24dp"
-                app:iconTint="@color/light_white" />
+                app:iconTint="@color/text_primary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="5dp"
                 android:text="@string/profile_personalListInfo"
-                android:textColor="@color/light_white_stroke" />
+                android:textColor="@color/text_primary_half" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/settings"
@@ -112,7 +112,7 @@
                 android:text="@string/settings"
                 app:icon="@drawable/ic_settings"
                 app:iconSize="24dp"
-                app:iconTint="@color/light_white" />
+                app:iconTint="@color/text_primary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="5dp"
                 android:text="@string/profile_settingsInfo"
-                android:textColor="@color/light_white_stroke" />
+                android:textColor="@color/text_primary_half" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logout"
@@ -131,7 +131,7 @@
                 android:text="@string/log_out"
                 app:icon="@drawable/ic_logout"
                 app:iconSize="24dp"
-                app:iconTint="@color/light_white" />
+                app:iconTint="@color/text_primary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="5dp"
                 android:text="@string/profile_logoutInfo"
-                android:textColor="@color/light_white_stroke" />
+                android:textColor="@color/text_primary_half" />
 
         </LinearLayout>
 

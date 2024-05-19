@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.Gson;
+import com.unirest.data.models.CookerRemind;
 import com.unirest.data.models.User;
+import com.unirest.data.models.WasherRemind;
 import com.unirest.data.viewmodels.MainViewModel;
 
 @SuppressWarnings("unused")
@@ -18,6 +20,8 @@ public class DataLocalHandler {
     public void loadAll() {
         loadToken();
         loadUser();
+        loadWasherReminder();
+        loadCookerReminder();
     }
 
     public void loadUser() {
@@ -28,9 +32,19 @@ public class DataLocalHandler {
         mainViewModel.token.postValue(gson.fromJson(preferences.getString("Token", null), String.class));
     }
 
+    public void loadWasherReminder() {
+        mainViewModel.washerRemind.postValue(gson.fromJson(preferences.getString("WasherReminder", null), WasherRemind.class));
+    }
+
+    public void loadCookerReminder() {
+        mainViewModel.cookerRemind.postValue(gson.fromJson(preferences.getString("CookerReminder", null), CookerRemind.class));
+    }
+
     public void saveAll() {
         saveToken();
         saveUser();
+        saveWasherReminder();
+        saveCookerReminder();
     }
 
     public void saveUser() {
@@ -51,6 +65,24 @@ public class DataLocalHandler {
                     if (oldToken.equals(token)) return;
                 }
                 editor.putString("Token", gson.toJson(token));
+            }
+        });
+    }
+
+    public void saveWasherReminder() {
+        edit(editor -> {
+            WasherRemind reminder = mainViewModel.washerRemind.getValue();
+            if (reminder != null) {
+                editor.putString("WasherReminder", gson.toJson(reminder));
+            }
+        });
+    }
+
+    public void saveCookerReminder() {
+        edit(editor -> {
+            WasherRemind reminder = mainViewModel.washerRemind.getValue();
+            if (reminder != null) {
+                editor.putString("CookerReminder", gson.toJson(reminder));
             }
         });
     }
@@ -99,6 +131,7 @@ public class DataLocalHandler {
         editor.edit(edit);
         edit.apply();
     }
+
 
     private interface SharedEditor {
         void edit(SharedPreferences.Editor editor);

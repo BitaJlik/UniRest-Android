@@ -14,6 +14,7 @@ import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentProfileBinding;
 import com.unirest.ui.common.BaseFragment;
 import com.unirest.ui.fragments.login.FragmentLogin;
+import com.unirest.ui.fragments.payment.FragmentPayment;
 import com.unirest.ui.fragments.profile.notification.FragmentNotificationEditor;
 import com.unirest.ui.fragments.profile.information.FragmentProfileEdit;
 import com.unirest.ui.fragments.settings.FragmentSettings;
@@ -27,6 +28,7 @@ public class FragmentProfile extends BaseFragment<FragmentProfileBinding> {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         mainViewModel.token.observe(getViewLifecycleOwner(), token -> {
             DataNetHandler.getInstance().verifyAuth(token, isValid -> {
+                if (!isVisible()) return;
 
                 if (!isValid) {
                     changeFragment(new FragmentLogin());
@@ -44,7 +46,8 @@ public class FragmentProfile extends BaseFragment<FragmentProfileBinding> {
                 });
 
                 binding.payments.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                    // TODO: 26.04.2024 Payments fragment
+                    changeFragment(new FragmentPayment(), true);
+                    enableButton.call(true);
                 });
 
                 binding.personalList.setOnClickListener((OnClickCallback) (v, enableButton) -> {

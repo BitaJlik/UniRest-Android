@@ -15,9 +15,18 @@ public class Floor implements IDiff<Floor> {
 
     private List<Long> rooms = new ArrayList<>();
     private List<Long> cookers = new ArrayList<>();
+    private List<Long> washers = new ArrayList<>();
 
     public Long getId() {
         return id;
+    }
+
+    public List<Long> getWashers() {
+        return washers;
+    }
+
+    public void setWashers(List<Long> washers) {
+        this.washers = washers;
     }
 
     public void setId(Long id) {

@@ -14,8 +14,9 @@ import com.unirest.api.ICallback;
 import com.unirest.api.UniCode;
 import com.unirest.databinding.FragmentScannerBinding;
 import com.unirest.ui.common.BaseFragment;
-import com.unirest.ui.fragments.home.FragmentHome;
+import com.unirest.ui.fragments.cooker.FragmentCooker;
 import com.unirest.ui.fragments.permit.FragmentUserPermit;
+import com.unirest.ui.fragments.washer.FragmentWasher;
 
 import java.util.Collections;
 
@@ -43,20 +44,18 @@ public class FragmentScanner extends BaseFragment<FragmentScannerBinding> {
             for (String prefix : UniCode.PREFIXES) {
                 if (code.startsWith(prefix)) {
                     codeScanner.stopPreview();
-                    String stringCode = result.getText().substring(1);
-                    mainViewModel.barcode.setValue(stringCode);
+                    mainViewModel.barcode.setValue(code);
                     getActivityMain().onBackPressed();
                     if (callbackCode != null) {
                         callbackCode.call(code);
                     } else {
                         UniCode uniCode = new UniCode(code);
                         if (uniCode.isValid() && uniCode.isCodeUser()) {
-                            changeFragment(new FragmentHome());
                             changeFragment(new FragmentUserPermit(), true);
                         } else if (uniCode.isValid() && uniCode.isCodeCooker()) {
-                            // TODO: 10.04.2024 Show cooker fragment
+                            changeFragment(new FragmentCooker(), true);
                         } else if (uniCode.isValid() && uniCode.isCodeWashing()) {
-                            // TODO: 10.04.2024 Show washer fragment
+                            changeFragment(new FragmentWasher(), true);
                         }
                     }
                 }

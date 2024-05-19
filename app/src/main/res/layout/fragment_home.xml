@@ -39,7 +39,7 @@
                         android:layout_marginHorizontal="10dp"
                         android:gravity="center"
                         android:text="@string/permit"
-                        android:textColor="@color/light_white"
+                        android:textColor="@color/text_primary"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="Hello, name"
-                            android:textColor="@color/light_white"
+                            android:textColor="@color/text_primary"
                             android:textSize="22sp"
                             android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="Hello, name"
-                            android:textColor="@color/light_white"
+                            android:textColor="@color/text_primary"
                             android:textSize="22sp"
                             android:textStyle="bold" />
 
@@ -86,7 +86,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="Course: 3"
-                            android:textColor="@color/light_white"
+                            android:textColor="@color/text_primary"
                             android:textSize="18sp" />
 
                         <TextView
@@ -95,7 +95,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="Expire at: 29.06"
-                            android:textColor="@color/light_white"
+                            android:textColor="@color/text_primary"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -153,7 +153,7 @@
 
                     <TextView
                         android:textSize="16sp"
-                        android:textColor="@color/light_white_stroke"
+                        android:textColor="@color/text_primary_half"
                         android:id="@+id/barcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                             android:layout_marginHorizontal="10dp"
                             android:gravity="center"
                             android:text="@string/permit"
-                            android:textColor="@color/light_white_stroke"
+                            android:textColor="@color/text_primary_half"
                             android:textSize="22sp"
                             android:textStyle="bold" />
 
@@ -213,7 +213,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/name"
-                                android:textColor="@color/light_white"
+                                android:textColor="@color/text_primary"
                                 android:textSize="22sp"
                                 android:textStyle="bold" />
 
@@ -222,7 +222,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/second_name"
-                                android:textColor="@color/light_white"
+                                android:textColor="@color/text_primary"
                                 android:textSize="22sp"
                                 android:textStyle="bold" />
 
@@ -231,7 +231,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/course"
-                                android:textColor="@color/light_white"
+                                android:textColor="@color/text_primary"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -239,7 +239,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/expire"
-                                android:textColor="@color/light_white"
+                                android:textColor="@color/text_primary"
                                 android:textSize="18sp" />
 
                         </LinearLayout>

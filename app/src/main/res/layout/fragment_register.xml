@@ -23,7 +23,7 @@
                 android:gravity="center"
                 android:paddingTop="15dp"
                 android:text="@string/title_register"
-                android:textColor="@color/light_white"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp" />
 
             <ImageView
@@ -63,7 +63,7 @@
                             android:layout_height="match_parent"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
-                            android:textColor="@color/light_white" />
+                            android:textColor="@color/text_primary" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +82,7 @@
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
                             android:singleLine="true"
-                            android:textColor="@color/light_white" />
+                            android:textColor="@color/text_primary" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +99,7 @@
                             android:imeOptions="actionDone"
                             android:inputType="textPassword"
                             android:singleLine="true"
-                            android:textColor="@color/light_white" />
+                            android:textColor="@color/text_primary" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,7 +110,7 @@
                         android:layout_marginVertical="5dp"
                         android:gravity="center"
                         android:text="@string/basic_registration_for_user_identification_after_you_settle_in_the_administrator_will_ask_for_more_information"
-                        android:textColor="@color/light_white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -136,7 +136,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
                         android:text="@string/registering"
-                        android:textColor="@color/light_white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -153,7 +153,7 @@
                         android:id="@+id/otpEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light_white"
+                        android:textColor="@color/text_primary"
                         app:bar_enabled="true"
                         app:bar_height="2dp"
                         app:length="4"

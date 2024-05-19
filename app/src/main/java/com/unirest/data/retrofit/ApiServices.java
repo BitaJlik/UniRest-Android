@@ -54,9 +54,19 @@ public interface ApiServices {
     @GET("user/image/{id}")
     Call<ResponseBody> getImage(@Path("id") Long id);
 
+    @GET("payment/check/{id}")
+    Call<ResponseBody> getImagePayment(@Path("id") String checkId);
+
     @Multipart
     @POST("user/image/upload")
     Call<ResponseBody> uploadImage(@Query("id") Long id, @Part MultipartBody.Part image);
+
+    @Multipart
+    @POST("payment/check/upload")
+    Call<ResponseBody> uploadPaymentCheck(@Query("id") String id, @Part MultipartBody.Part image);
+
+    @POST("payment/upload")
+    Call<ResponseBody> uploadPayment(@Query("id") Long userId, @Body RequestBody payment);
 
     @GET("notification/list")
     Call<ResponseBody> getNotifications(@Query("id") Long id);
@@ -76,4 +86,30 @@ public interface ApiServices {
     @POST("user/update/status")
     Call<ResponseBody> updateStatus(@Query("id") Long id);
 
+    @GET("payment/list")
+    Call<ResponseBody> getPayments(@Query("id") Long id);
+
+    @GET("washer/get")
+    Call<ResponseBody> getWasher(@Query("id") Long id);
+
+    @GET("cooker/get")
+    Call<ResponseBody> getCooker(@Query("id") Long id);
+
+    @GET("washer/of")
+    Call<ResponseBody> getWashers(@Query("id") Long floorId);
+
+    @GET("cooker/of")
+    Call<ResponseBody> getCookers(@Query("id") Long floorId);
+
+    @POST("washer/busy")
+    Call<ResponseBody> setBusyWasher(@Query("id") Long id, @Query("time") int minutes, @Query("userId") Long userId);
+
+    @POST("cooker/busy")
+    Call<ResponseBody> setBusyCooker(@Query("id") Long id, @Query("time") int minutes, @Query("userId") Long userId);
+
+    @POST("washer/free")
+    Call<ResponseBody> setFreeWasher(@Query("id") Long id, @Query("userId") Long userId);
+
+    @POST("cooker/free")
+    Call<ResponseBody> setFreeCooker(@Query("id") Long id, @Query("userId") Long userId);
 }

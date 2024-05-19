@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/overlay"
-        app:strokeColor="@color/light_white_stroke">
+        app:strokeColor="@color/text_primary_half">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="@string/name"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="@string/second_name"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="@string/room"
-                    android:textColor="@color/light_white"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
                 android:layout_gravity="center_vertical"
                 android:padding="10dp"
                 android:src="@drawable/ic_remove"
-                app:tint="@color/light_white" />
+                app:tint="@color/text_primary" />
 
         </LinearLayout>
 

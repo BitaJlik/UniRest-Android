@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.unirest.R;
-import com.unirest.api.ICallback;
 import com.unirest.api.OnClickCallback;
 import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentDormitoryBinding;
@@ -32,8 +31,13 @@ public class FragmentDormitory extends BaseFragment<FragmentDormitoryBinding> {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         mainViewModel.token.observe(getViewLifecycleOwner(), token -> {
             mainViewModel.user.observe(getViewLifecycleOwner(), user -> {
+                if (user == null) return;
                 DataNetHandler.getInstance().getDormitoryInfo(user.getDormitoryId(), dormitory -> {
                     if (dormitory == null) return;
+
+                    binding.shimmer.hideShimmer();
+                    binding.main.setVisibility(View.VISIBLE);
+                    binding.shimmer.setVisibility(View.GONE);
 
                     binding.textDormitory.setText(dormitory.getName());
                     binding.textAddress.setText(dormitory.getAddress());

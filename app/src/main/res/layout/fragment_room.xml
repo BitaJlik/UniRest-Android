@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Room 215"
-        android:textColor="@color/light_white"
+        android:textColor="@color/text_primary"
         android:textSize="20sp" />
 
     <LinearLayout

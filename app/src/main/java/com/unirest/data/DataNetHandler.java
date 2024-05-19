@@ -8,14 +8,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.unirest.api.BaseCallback;
 import com.unirest.api.ICallback;
+import com.unirest.data.models.Cooker;
 import com.unirest.data.models.Dormitory;
 import com.unirest.data.models.ErrorMessage;
 import com.unirest.data.models.Floor;
 import com.unirest.data.models.Notification;
 import com.unirest.data.models.NotificationRequest;
+import com.unirest.data.models.Payment;
 import com.unirest.data.models.Room;
 import com.unirest.data.models.User;
 import com.unirest.data.models.UserPermit;
+import com.unirest.data.models.Washer;
 import com.unirest.data.retrofit.ApiServices;
 
 import org.json.JSONArray;
@@ -37,7 +40,7 @@ import retrofit2.Retrofit;
 public class DataNetHandler {
     private static final String tag = "DataNetHandler";
     // private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("https://unirest.site/").build(); // TODO: 16.03.2024
-    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.43.240:11111/").build();
+    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.0.111:11111/").build();
     // >>> Hash verify
     private long lastVerify = 0;
     // <<< Hash verify
@@ -259,6 +262,22 @@ public class DataNetHandler {
         });
     }
 
+    public void uploadPaymentCheck(String checkId, MultipartBody.Part body, ICallback<Boolean> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.uploadPaymentCheck(checkId, body).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, true);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, false);
+            }
+        });
+    }
+
     public void updateStatus(Long userId) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         apiServices.updateStatus(userId).enqueue((BaseCallback<ResponseBody>) (response, jsonString) -> {
@@ -315,6 +334,169 @@ public class DataNetHandler {
         });
     }
 
+    public void getPayments(Long id, ICallback<List<Payment>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getPayments(id).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<Payment>>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void uploadPayment(User user, Payment payment, ICallback<String> callbackUUID) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.uploadPayment(user.getId(), RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(payment))).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callbackUUID, jsonString);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callbackUUID, null);
+            }
+        });
+    }
+
+    public void getWasher(Long id, ICallback<Washer> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getWasher(id).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<Washer>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void getCooker(Long id, ICallback<Cooker> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getCooker(id).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<Cooker>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void getWashers(Long id, ICallback<List<Washer>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getWashers(id).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<Washer>>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void getCookers(Long id, ICallback<List<Cooker>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getCookers(id).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<Cooker>>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void setBusyWasher(Long id, Long userId, int minutes, boolean busy, ICallback<Boolean> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        if (busy) {
+            apiServices.setBusyWasher(id, minutes, userId).enqueue(new BaseCallback<ResponseBody>() {
+                @Override
+                public void onJson(Response<ResponseBody> response, String jsonString) {
+                    call(callback, response.code() == 202);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                    BaseCallback.super.onFailure(call, t);
+                    call(callback, false);
+                }
+            });
+        } else {
+            apiServices.setFreeWasher(id, userId).enqueue(new BaseCallback<ResponseBody>() {
+                @Override
+                public void onJson(Response<ResponseBody> response, String jsonString) {
+                    call(callback, response.code() == 202);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                    BaseCallback.super.onFailure(call, t);
+                    call(callback, false);
+                }
+            });
+        }
+    }
+
+    public void setBusyCooker(Long id, Long userId, int minutes, boolean busy, ICallback<Boolean> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        if (busy) {
+            apiServices.setBusyCooker(id, minutes, userId).enqueue(new BaseCallback<ResponseBody>() {
+                @Override
+                public void onJson(Response<ResponseBody> response, String jsonString) {
+                    call(callback, response.code() == 202);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                    BaseCallback.super.onFailure(call, t);
+                    call(callback, false);
+                }
+            });
+        } else {
+            apiServices.setFreeCooker(id, userId).enqueue(new BaseCallback<ResponseBody>() {
+                @Override
+                public void onJson(Response<ResponseBody> response, String jsonString) {
+                    call(callback, response.code() == 202);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                    BaseCallback.super.onFailure(call, t);
+                    call(callback, false);
+                }
+            });
+        }
+    }
+
     public void getUrlImageUser(User user, ICallback<String> urlCallback) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         call(urlCallback, apiServices.getImage(user.getId()).request().url().toString());
@@ -323,6 +505,15 @@ public class DataNetHandler {
     public void getUrlImageUser(UserPermit user, ICallback<String> urlCallback) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         call(urlCallback, apiServices.getImage(user.getId()).request().url().toString());
+    }
+
+    public void getUrlPayment(Payment payment, ICallback<String> urlCallback) {
+        if (payment.getCheckId() == null) {
+            urlCallback.call(null);
+            return;
+        }
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        call(urlCallback, apiServices.getImagePayment(payment.getCheckId()).request().url().toString());
     }
 
     private <T> void call(ICallback<T> callback, T value) {
@@ -371,6 +562,5 @@ public class DataNetHandler {
         }
         return instance;
     }
-
 
 }

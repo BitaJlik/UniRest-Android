@@ -45,6 +45,7 @@ public class ActivityMain extends AppCompatActivity {
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             if (!forceSelect) {
+                // TODO: 06.05.2024 Make block dialog if server not responding
                 if (item.getItemId() == R.id.home) {
                     changeFragment(new FragmentHome());
                 }
@@ -82,8 +83,8 @@ public class ActivityMain extends AppCompatActivity {
             }
         });
 
-        this.selectNav(R.id.profile);
-        this.changeFragment(new FragmentProfile());
+        this.selectNav(R.id.home);
+        this.changeFragment(new FragmentHome());
     }
 
     public void updateUser() {
@@ -91,10 +92,12 @@ public class ActivityMain extends AppCompatActivity {
         String tokenValue = mainViewModel.token.getValue();
         if (tokenValue != null) {
             DataNetHandler.getInstance().getUser(tokenValue, user -> {
-                mainViewModel.user.setValue(user);
-                DataNetHandler.getInstance().updateStatus(user.getId());
+                if(user != null){
+                    mainViewModel.user.setValue(user);
+                    DataNetHandler.getInstance().updateStatus(user.getId());
+                    DataLocalHandler.getInstance(this).saveUser();
+                }
             });
-            DataLocalHandler.getInstance(this).saveUser();
         }
     }
 
@@ -128,7 +131,6 @@ public class ActivityMain extends AppCompatActivity {
             if (addToBackStack) {
                 transaction.addToBackStack(fragment.getClass().getSimpleName());
             }
-            transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
             transaction.replace(R.id.fragment_container, fragment);
             transaction.commit();
         });

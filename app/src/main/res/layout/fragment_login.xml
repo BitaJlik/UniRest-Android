@@ -25,7 +25,7 @@
                 android:gravity="center"
                 android:paddingTop="15dp"
                 android:text="@string/title_authorization"
-                android:textColor="@color/light_white"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp" />
 
             <ImageView
@@ -62,7 +62,7 @@
                             android:layout_height="match_parent"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
-                            android:textColor="@color/light_white" />
+                            android:textColor="@color/text_primary" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +82,7 @@
                             android:imeOptions="actionDone"
                             android:inputType="textPassword"
                             android:singleLine="true"
-                            android:textColor="@color/light_white" />
+                            android:textColor="@color/text_primary" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +93,7 @@
                         android:layout_marginVertical="5dp"
                         android:layout_marginEnd="10dp"
                         android:text="@string/forgot_password"
-                        android:textColor="@color/light_white"
+                        android:textColor="@color/text_primary"
                         android:textSize="15sp" />
 
                 </LinearLayout>
@@ -118,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="@string/logging"
-                        android:textColor="@color/light_white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -146,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:lines="1"
                         android:text="@string/dont_have_an_account"
-                        android:textColor="@color/light_white"
+                        android:textColor="@color/text_primary"
                         android:textSize="16sp" />
 
                     <TextView
@@ -166,7 +166,7 @@
                 android:layout_height="1dp"
                 android:layout_marginVertical="10dp"
                 android:alpha="0.3"
-                android:background="@color/light_white" />
+                android:background="@color/text_primary" />
 
             <LinearLayout
                 android:layout_width="match_parent"

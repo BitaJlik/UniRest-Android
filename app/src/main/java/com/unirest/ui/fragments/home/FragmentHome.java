@@ -41,6 +41,7 @@ public class FragmentHome extends BaseFragment<FragmentHomeBinding> {
                         DataNetHandler.getInstance().getUrlImageUser(user, url -> {
                             Picasso.get().load(url).into(binding.image);
                         });
+
                         binding.name.setText(user.getName());
                         binding.lastName.setText(user.getLastName());
                         binding.course.setText(String.format("%s %s", getString(R.string.course), user.getCourse()));
@@ -50,18 +51,20 @@ public class FragmentHome extends BaseFragment<FragmentHomeBinding> {
                         binding.shimmer.setVisibility(View.GONE);
                         binding.shimmer.hideShimmer();
 
-                        binding.barcode.setText(String.format("%s%s", UniCode.PREFIXES[0], fixNumber(user.getId(), 7)));
+                        binding.barcode.setText(String.format("%s%s", UniCode.PREFIX_USER, fixNumber(user.getId(), 7)));
 
                         binding.imageBarcode.post(() -> {
                             binding.imageBarcode.setVisibility(View.VISIBLE);
                             binding.progress.setVisibility(View.GONE);
                             int width = binding.imageBarcode.getWidth();
                             int height = binding.imageBarcode.getHeight();
-                            try {
-                                binding.imageBarcode.setImageBitmap(createImage(UniCode.PREFIXES[0] + fixNumber(user.getId(), 7), width, height));
-                                barcodeValid = true;
-                            } catch (WriterException e) {
-                                barcodeValid = false;
+                            if (width > 0 && height > 0) {
+                                try {
+                                    binding.imageBarcode.setImageBitmap(createImage(UniCode.PREFIX_USER + fixNumber(user.getId(), 7), width, height));
+                                    barcodeValid = true;
+                                } catch (WriterException e) {
+                                    barcodeValid = false;
+                                }
                             }
                         });
                     }

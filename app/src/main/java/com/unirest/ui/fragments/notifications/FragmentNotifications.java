@@ -37,6 +37,8 @@ public class FragmentNotifications extends BaseFragment<FragmentNotificationsBin
             DataNetHandler.getInstance().verifyAuth(token, isVerified -> {
                 if (isVerified) {
                     mainViewModel.user.observe(getViewLifecycleOwner(), user -> {
+                        if(user == null) return;
+
                         DataNetHandler.getInstance().getNotifications(user.getId(), notifications -> {
                             adapter.setCallbackUserResponse((unused, callback) -> callback.call(user));
                             adapter.setItems(notifications);
