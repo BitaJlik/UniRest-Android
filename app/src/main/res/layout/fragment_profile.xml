@@ -21,6 +21,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -65,43 +66,61 @@
                 android:text="@string/profile_paymentsInfo"
                 android:textColor="@color/text_primary_half" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/notification_edit"
-                style="@style/defaultMaterialButtonOutline"
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/layoutNotification"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/notification_editor"
-                app:icon="@drawable/ic_notification"
-                app:iconSize="24dp"
-                app:iconTint="@color/text_primary" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingHorizontal="5dp"
-                android:text="@string/profile_notificationEditorInfo"
-                android:textColor="@color/text_primary_half" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/notification_edit"
+                    style="@style/defaultMaterialButtonOutline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/notification_editor"
+                    app:icon="@drawable/ic_notification"
+                    app:iconSize="24dp"
+                    app:iconTint="@color/text_primary" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/personalList"
-                style="@style/defaultMaterialButtonOutline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/personal_list"
-                app:icon="@drawable/ic_personal_list"
-                app:iconSize="24dp"
-                app:iconTint="@color/text_primary" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="5dp"
+                    android:text="@string/profile_notificationEditorInfo"
+                    android:textColor="@color/text_primary_half" />
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/layoutPersonal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingHorizontal="5dp"
-                android:text="@string/profile_personalListInfo"
-                android:textColor="@color/text_primary_half" />
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/personalList"
+                    style="@style/defaultMaterialButtonOutline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/personal_list"
+                    app:icon="@drawable/ic_personal_list"
+                    app:iconSize="24dp"
+                    app:iconTint="@color/text_primary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="5dp"
+                    android:text="@string/profile_personalListInfo"
+                    android:textColor="@color/text_primary_half" />
+
+
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/settings"

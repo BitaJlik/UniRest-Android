@@ -1,4 +1,4 @@
-package com.unirest.ui.fragments.dormitory;
+package com.unirest.ui.fragments.cookers;
 
 import android.view.View;
 

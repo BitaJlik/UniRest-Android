@@ -20,6 +20,7 @@ import com.unirest.data.models.User;
 import com.unirest.data.models.UserPermit;
 import com.unirest.data.models.Washer;
 import com.unirest.data.retrofit.ApiServices;
+import com.unirest.utils.DataCacheHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,17 +34,41 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 @SuppressWarnings("unused")
 public class DataNetHandler {
     private static final String tag = "DataNetHandler";
-    // private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("https://unirest.site/").build(); // TODO: 16.03.2024
+    // TODO: 16.03.2024
+//    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("https://unirest.site/").build();
+//    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.43.240:11111/").build();
     private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.0.111:11111/").build();
-    // >>> Hash verify
-    private long lastVerify = 0;
-    // <<< Hash verify
+
+    public void getServerStatus(ICallback<Boolean> serverEnabledCallback) {
+        ApiServices services = retrofitMain.create(ApiServices.class);
+        if (!DataCacheHandler.getInstance().isKeyExpired("server")) {
+            Boolean server = (Boolean) DataCacheHandler.getInstance().get("server");
+            if (server != null && server) {
+                call(serverEnabledCallback, true);
+                return;
+            }
+        }
+        services.getStatus().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                call(serverEnabledCallback, true);
+                DataCacheHandler.getInstance().put("server", true, 60_000);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                call(serverEnabledCallback, false);
+                DataCacheHandler.getInstance().put("server", false, 60_000);
+            }
+        });
+    }
 
     public void login(String login, String password, ICallback<String> tokenCallback, ICallback<String> errorCallback) {
         ApiServices coreServices = retrofitMain.create(ApiServices.class);
@@ -98,8 +123,7 @@ public class DataNetHandler {
             call(verifiedCallback, false);
             return;
         }
-        long currentTime = System.currentTimeMillis();
-        if (currentTime - lastVerify <= 30_000) {
+        if (!DataCacheHandler.getInstance().isKeyExpired("lastVerify")) {
             call(verifiedCallback, true);
         } else {
             ApiServices coreServices = retrofitMain.create(ApiServices.class);
@@ -108,7 +132,7 @@ public class DataNetHandler {
                 public void onJson(Response<ResponseBody> response, String jsonString) {
                     boolean verified = response.code() == 202;
                     if (verified) {
-                        lastVerify = System.currentTimeMillis();
+                        DataCacheHandler.getInstance().put("lastVerify", System.currentTimeMillis(), 30_000);
                     }
                     DataNetHandler.this.call(verifiedCallback, verified);
                 }
@@ -179,53 +203,53 @@ public class DataNetHandler {
         });
     }
 
-    public void getFloors(Long dormitoryId, ICallback<List<Floor>> floors) {
+    public void getFloors(Long dormitoryId, ICallback<List<Floor>> listICallback) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         apiServices.getFloors(dormitoryId).enqueue(new BaseCallback<ResponseBody>() {
             @Override
             public void onJson(Response<ResponseBody> response, String jsonString) {
-                call(floors, new Gson().fromJson(jsonString, new TypeToken<List<Floor>>() {
+                call(listICallback, new Gson().fromJson(jsonString, new TypeToken<List<Floor>>() {
                 }));
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 BaseCallback.super.onFailure(call, t);
-                call(floors, null);
+                call(listICallback, null);
             }
         });
     }
 
-    public void getRooms(Long floorId, ICallback<List<Room>> callback) {
+    public void getRooms(Long floorId, ICallback<List<Room>> listICallback) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         apiServices.getRooms(floorId).enqueue(new BaseCallback<ResponseBody>() {
             @Override
             public void onJson(Response<ResponseBody> response, String jsonString) {
-                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<Room>>() {
+                call(listICallback, new Gson().fromJson(jsonString, new TypeToken<List<Room>>() {
                 }));
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 BaseCallback.super.onFailure(call, t);
-                call(callback, null);
+                call(listICallback, null);
             }
         });
     }
 
-    public void getUsers(Long roomId, ICallback<List<User>> callback) {
+    public void getUsers(Long roomId, ICallback<List<User>> listICallback) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         apiServices.getUsers(roomId).enqueue(new BaseCallback<ResponseBody>() {
             @Override
             public void onJson(Response<ResponseBody> response, String jsonString) {
-                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<User>>() {
+                call(listICallback, new Gson().fromJson(jsonString, new TypeToken<List<User>>() {
                 }));
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 BaseCallback.super.onFailure(call, t);
-                call(callback, null);
+                call(listICallback, null);
             }
         });
     }
@@ -347,6 +371,39 @@ public class DataNetHandler {
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 BaseCallback.super.onFailure(call, t);
                 call(callback, null);
+            }
+        });
+    }
+
+    public void getDormitoryPayments(Long dormitoryId, ICallback<List<Payment>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getDormitoryPayments(dormitoryId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<Payment>>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void moderatePayment(Payment payment, boolean validPayment, ICallback<Boolean> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.moderatePayment(payment.getId(), validPayment).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, response.code() == 202);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, false);
             }
         });
     }

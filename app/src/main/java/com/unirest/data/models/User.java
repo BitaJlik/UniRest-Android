@@ -7,7 +7,7 @@ public class User implements IDiff<User> {
     private Long dormitoryId;
     private String email;
 
-    private int balance;
+    private double balance;
     private String username;
     private String name;
     private String lastName;
@@ -61,7 +61,7 @@ public class User implements IDiff<User> {
         this.email = email;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
@@ -73,7 +73,7 @@ public class User implements IDiff<User> {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 

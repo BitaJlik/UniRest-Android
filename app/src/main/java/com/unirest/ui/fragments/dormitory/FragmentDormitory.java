@@ -15,6 +15,7 @@ import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentDormitoryBinding;
 import com.unirest.ui.common.BaseFragment;
 import com.unirest.ui.fragments.floors.FragmentFloors;
+import com.unirest.ui.fragments.moderate.FragmentModerate;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -82,7 +83,7 @@ public class FragmentDormitory extends BaseFragment<FragmentDormitoryBinding> {
                     }
 
                     binding.floors.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                        changeFragment(new FragmentFloors());
+                        changeFragment(new FragmentFloors(),true);
                         enableButton.call(true);
                     });
 
@@ -91,6 +92,16 @@ public class FragmentDormitory extends BaseFragment<FragmentDormitoryBinding> {
                         startActivity(intent);
                         enableButton.call(true);
                     });
+
+                    if (user.getRole().getLevel() > 1) {
+                        binding.moderate.setVisibility(View.VISIBLE);
+                        binding.moderate.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                            changeFragment(new FragmentModerate(), true);
+                            enableButton.call(true);
+                        });
+                    } else {
+                        binding.moderate.setVisibility(View.GONE);
+                    }
                 });
             });
         });

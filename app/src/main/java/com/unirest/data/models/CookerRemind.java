@@ -1,20 +1,20 @@
 package com.unirest.data.models;
 
 public class CookerRemind {
-    private Long washerId;
+    private Long cookerId;
     private Long timeToRemind;
 
-    public CookerRemind(Long washerId, Long timeToRemind) {
-        this.washerId = washerId;
+    public CookerRemind(Long cookerId, Long timeToRemind) {
+        this.cookerId = cookerId;
         this.timeToRemind = timeToRemind;
     }
 
-    public Long getWasherId() {
-        return washerId;
+    public Long getCookerId() {
+        return cookerId;
     }
 
-    public void setWasherId(Long washerId) {
-        this.washerId = washerId;
+    public void setCookerId(Long cookerId) {
+        this.cookerId = cookerId;
     }
 
     public Long getTimeToRemind() {

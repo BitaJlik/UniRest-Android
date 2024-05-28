@@ -15,6 +15,9 @@ import retrofit2.http.Query;
 
 public interface ApiServices {
 
+    @GET("status")
+    Call<ResponseBody> getStatus();
+
     @POST("user/login")
     Call<ResponseBody> login(@Header("Username") String username, @Header("Password") String password /*SHA256*/);
 
@@ -88,6 +91,12 @@ public interface ApiServices {
 
     @GET("payment/list")
     Call<ResponseBody> getPayments(@Query("id") Long id);
+
+    @GET("payment/moderate/list")
+    Call<ResponseBody> getDormitoryPayments(@Query("id") Long id);
+
+    @POST("payment/moderate")
+    Call<ResponseBody> moderatePayment(@Query("id") Long id, @Query("valid") boolean validPayment);
 
     @GET("washer/get")
     Call<ResponseBody> getWasher(@Query("id") Long id);

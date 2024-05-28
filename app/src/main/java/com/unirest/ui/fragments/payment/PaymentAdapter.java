@@ -43,6 +43,14 @@ public class PaymentAdapter extends BaseAdapter<Payment> {
             if (payment.isModerated()) {
                 binding.moderate.setText(context.getString(R.string.moderated_yes));
                 binding.moderate.setTextColor(ContextCompat.getColor(context, R.color.green));
+
+                binding.valid.setVisibility(View.VISIBLE);
+                if (payment.isValid()) {
+                    binding.valid.setText(R.string.valid_payment_yes);
+                } else {
+                    binding.valid.setText(R.string.valid_payment_no);
+                }
+
             } else {
                 binding.moderate.setText(context.getString(R.string.moderated_no));
                 binding.moderate.setTextColor(ContextCompat.getColor(context, R.color.red_lite));

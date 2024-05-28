@@ -8,7 +8,9 @@ public class Payment implements IDiff<Payment> {
     private double balance;
     private String checkId;
 
+    private long moderateDate;
     private boolean moderated;
+    private boolean valid;
 
     private Long dormitoryId;
 
@@ -36,6 +38,22 @@ public class Payment implements IDiff<Payment> {
         this.balance = balance;
     }
 
+    public long getModerateDate() {
+        return moderateDate;
+    }
+
+    public void setModerateDate(long moderateDate) {
+        this.moderateDate = moderateDate;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
     public String getCheckId() {
         return checkId;
     }
@@ -58,5 +76,33 @@ public class Payment implements IDiff<Payment> {
 
     public void setDormitoryId(Long dormitoryId) {
         this.dormitoryId = dormitoryId;
+    }
+
+    public static class Comparators {
+        public static int compareDate(Payment o1, Payment o2) {
+            return Long.compare(o1.getDate(), o2.getDate());
+        }
+
+        public static int compareSum(Payment o1, Payment o2) {
+            return Double.compare(o1.getBalance(), o2.getBalance());
+        }
+
+        public static int compareIfModerated(Payment o1, Payment o2) {
+            return Boolean.compare(o1.isModerated(), o2.isModerated());
+        }
+    }
+
+    public static class ReverseComparators {
+        public static int compareDate(Payment o1, Payment o2) {
+            return Long.compare(o2.getDate(), o1.getDate());
+        }
+
+        public static int compareSum(Payment o1, Payment o2) {
+            return Double.compare(o2.getBalance(), o1.getBalance());
+        }
+
+        public static int compareIfModerated(Payment o1, Payment o2) {
+            return Boolean.compare(o2.isModerated(), o1.isModerated());
+        }
     }
 }

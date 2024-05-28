@@ -114,12 +114,14 @@ public class FragmentProfileEdit extends BaseFragment<FragmentProfileEditBinding
                     Picasso.get().load(url).into(binding.image, new Callback() {
                         @Override
                         public void onSuccess() {
+                            if(!isVisible()) return;
                             binding.progress.setVisibility(View.GONE);
                             binding.image.setVisibility(View.VISIBLE);
                         }
 
                         @Override
                         public void onError(Exception e) {
+                            if(!isVisible()) return;
                             binding.progress.setVisibility(View.GONE);
                             binding.imageError.setVisibility(View.VISIBLE);
                         }

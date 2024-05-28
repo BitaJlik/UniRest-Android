@@ -64,7 +64,8 @@
                 android:layout_gravity="center_vertical"
                 android:padding="10dp"
                 android:src="@drawable/ic_remove"
-                app:tint="@color/text_primary" />
+                android:tooltipText="@string/remove_from_list"
+                app:tint="@color/remove_trash_selector" />
 
         </LinearLayout>
 

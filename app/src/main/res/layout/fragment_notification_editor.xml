@@ -61,7 +61,7 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="@string/here_is_empty"
-        android:textColor="@color/text_primary"
+        android:textColor="@color/text_primary_half"
         android:textSize="20sp"
         android:visibility="gone" />
 

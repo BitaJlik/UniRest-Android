@@ -12,7 +12,7 @@
         app:zoomage_animateOnReset="true"
         app:zoomage_autoCenter="true"
         app:zoomage_autoResetMode="UNDER"
-        app:zoomage_maxScale="8"
+        app:zoomage_maxScale="7"
         app:zoomage_minScale="0.6"
         app:zoomage_restrictBounds="false"
         app:zoomage_translatable="true"
@@ -25,14 +25,41 @@
         android:layout_centerInParent="true"
         android:indeterminateTint="@color/second" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/save"
-        style="@style/defaultMaterialButtonOutline"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:text="@string/download" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save"
+            style="@style/defaultMaterialButtonOutline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/download"
+            android:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/validNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/button_red_selector"
+            android:text="@string/moderated_button_no"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/validYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:backgroundTint="@color/button_green_selector"
+            android:text="@string/moderated_button_yes"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
 </RelativeLayout>

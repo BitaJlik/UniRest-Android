@@ -101,7 +101,7 @@ public class FragmentWasher extends BaseFragment<FragmentWasherBinding> {
                                     Snackbar.make(v, R.string.success_busy, Snackbar.LENGTH_SHORT).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show();
                                     if (binding.remindCheckBox.isChecked()) {
                                         WasherRemind remind = new WasherRemind(washer.getId(), System.currentTimeMillis() + (long) minutes * 60 * 1000);
-                                        mainViewModel.washerRemind.postValue(remind);
+                                        mainViewModel.washerRemind.setValue(remind);
                                         DataLocalHandler.getInstance().saveWasherReminder();
                                     }
                                     AsyncUtils.waitAsync(1000, () -> ui(() -> {

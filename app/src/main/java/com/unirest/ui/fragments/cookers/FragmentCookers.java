@@ -11,7 +11,6 @@ import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentCookersBinding;
 import com.unirest.ui.common.BaseFragment;
 import com.unirest.ui.fragments.cooker.FragmentCooker;
-import com.unirest.ui.fragments.dormitory.CookerAdapter;
 
 public class FragmentCookers extends BaseFragment<FragmentCookersBinding> {
     private final CookerAdapter adapter = new CookerAdapter();

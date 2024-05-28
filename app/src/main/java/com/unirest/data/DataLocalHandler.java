@@ -80,7 +80,7 @@ public class DataLocalHandler {
 
     public void saveCookerReminder() {
         edit(editor -> {
-            WasherRemind reminder = mainViewModel.washerRemind.getValue();
+            CookerRemind reminder = mainViewModel.cookerRemind.getValue();
             if (reminder != null) {
                 editor.putString("CookerReminder", gson.toJson(reminder));
             }

@@ -30,7 +30,7 @@ public class FragmentWashers extends BaseFragment<FragmentWashersBinding> {
             DataNetHandler.getInstance().getWashers(floor.getId(), washers -> {
                 adapter.setItems(washers);
                 adapter.setWasherICallback(washer -> {
-                    changeFragment(new FragmentWasher(washer.getId()),true);
+                    changeFragment(new FragmentWasher(washer.getId()), true);
                 });
             });
         });

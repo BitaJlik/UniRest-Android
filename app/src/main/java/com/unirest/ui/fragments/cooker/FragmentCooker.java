@@ -101,7 +101,7 @@ public class FragmentCooker extends BaseFragment<FragmentCookerBinding> {
                                     Snackbar.make(v, R.string.success_busy, Snackbar.LENGTH_SHORT).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show();
                                     if (binding.remindCheckBox.isChecked()) {
                                         CookerRemind remind = new CookerRemind(cooker.getId(), System.currentTimeMillis() + (long) minutes * 60 * 1000);
-                                        mainViewModel.cookerRemind.postValue(remind);
+                                        mainViewModel.cookerRemind.setValue(remind);
                                         DataLocalHandler.getInstance().saveCookerReminder();
                                     }
                                     AsyncUtils.waitAsync(1000, () -> ui(() -> {

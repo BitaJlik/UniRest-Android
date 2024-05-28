@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:enabled="false"
+            android:title="@string/fab_sort_group_by" />
+
+        <item
+            android:id="@+id/group_date"
+            android:title="@string/sort_by_date" />
+
+        <item
+            android:id="@+id/group_sum"
+            android:title="@string/sort_by_sum" />
+
+        <item
+            android:id="@+id/group_moderate"
+            android:title="@string/sort_by_moderate" />
+
+    </group>
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:enabled="false"
+            android:title="@string/fab_sort_actions" />
+
+        <item
+            android:id="@+id/sort_acceding"
+            android:title="@string/sort_by_acceding" />
+
+        <item
+            android:id="@+id/sort_descending"
+            android:title="@string/sort_by_descending" />
+
+    </group>
+</menu>

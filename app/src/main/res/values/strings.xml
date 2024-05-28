@@ -81,7 +81,7 @@
     <string name="date">Date</string>
     <string name="author">Author</string>
     <string name="inputs_cant_be_empty">Inputs can`t be empty</string>
-    <string name="success_registration_going_to_profile">Succes registration changing to profile</string>
+    <string name="success_registration_going_to_profile">Success registration changing to profile</string>
     <string name="moderate_payments">Moderate payments</string>
     <string name="moderate_requests">Moderate requests</string>
     <string name="commandant">Commandant</string>
@@ -111,8 +111,8 @@
     <string name="add_payment">Add payment</string>
     <string name="view_image">View image</string>
     <string name="moderated">Moderated</string>
-    <string name="moderated_yes">Moderated</string>
-    <string name="moderated_no">Not moderated</string>
+    <string name="moderated_yes">Moderated by admin</string>
+    <string name="moderated_no">Not moderated by admin</string>
     <string name="sum">Sum</string>
     <string name="download">Download</string>
     <string name="receipt">Receipt</string>
@@ -143,4 +143,26 @@
     <string name="washers">Washers</string>
     <string name="cooker">Cooker</string>
     <string name="list_of_users">List of users</string>
+    <string name="moderate">Moderate</string>
+    <string name="requests">Requests</string>
+    <string name="valid_payment_no">Payment not valid</string>
+    <string name="valid_payment_yes">Payment valid</string>
+    <string name="moderated_button_no">Payment not valid</string>
+    <string name="moderated_button_yes">Payment valid</string>
+    <string name="text_fab_options">Options</string>
+    <string name="sort_by_acceding">By ascending order</string>
+    <string name="sort_by_descending">By descending order</string>
+    <string name="sort_by_date">By date</string>
+    <string name="sort_by_sum">By sum</string>
+    <string name="sort_by_moderate">By moderate</string>
+    <string name="fab_sort_actions">Sort actions</string>
+    <string name="fab_sort_group_by">Group by</string>
+    <string name="dialog_valid_payment">Accurately check the check, amount, date of payment, and other values, after confirmation, the amount will be receipt to the user</string>
+    <string name="dialog_re_moderate">If the payment is verified, you can cancel the action, then the balance will be changed for the user</string>
+    <string name="server_not_enabled">Server not enabled navigation disabled</string>
+    <string name="dialog_floor_not_user">You are not on your floor, are you sure you want to continue</string>
+    <string name="reminder">Reminder</string>
+    <string name="notification_remind_washer">The washing machine has finished washing, please remove the items and release it</string>
+    <string name="notification_remind_cooker">Your time on the stove is over, please release it</string>
+    <string name="click_again_to_exit">Click again to exit</string>
 </resources>

@@ -68,5 +68,8 @@ dependencies {
     // Zoom imageview
     implementation("com.jsibbold:zoomage:1.3.1")
 
+    // WorkManager for reminders
+    implementation ("androidx.work:work-runtime:2.7.0")
+
     implementation(fileTree("libs"))
 }

@@ -12,7 +12,9 @@
     <color name="blue_light">#2D93AD</color>
     <color name="orange_light">#D58936</color>
     <color name="red">#9F0000</color>
+    <color name="red_half">#590303</color>
     <color name="green">#0E8700</color>
+    <color name="green_half">#31522D</color>
 
 
 </resources>

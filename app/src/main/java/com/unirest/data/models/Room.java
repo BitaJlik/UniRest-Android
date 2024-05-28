@@ -12,6 +12,7 @@ public class Room implements IDiff<Room> {
     private int beds;
     private String notes;
     private List<Long> users;
+    private Long floorId;
 
     public Long getId() {
         return id;
@@ -39,6 +40,14 @@ public class Room implements IDiff<Room> {
 
     public String getNotes() {
         return notes;
+    }
+
+    public Long getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(Long floorId) {
+        this.floorId = floorId;
     }
 
     public void setNotes(String notes) {
