@@ -65,7 +65,7 @@ public class ReminderWorker extends Worker {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), channelId)
                 .setSmallIcon(isCooker ? R.drawable.ic_cooker : R.drawable.ic_washer)
-                .setContentTitle(getApplicationContext().getString(R.string.reminder))
+                .setContentTitle(getApplicationContext().getString(R.string.notification_reminder))
                 .setContentText(message)
                 .setAutoCancel(true);
 

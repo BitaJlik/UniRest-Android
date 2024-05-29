@@ -75,7 +75,7 @@ public class FragmentPaymentView extends BaseFragment<FragmentPaymentViewBinding
                             builder.setMessage(String.format("%s?", message))
                                     .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
                                         DataNetHandler.getInstance().moderatePayment(payment, false, success -> {
-                                            getActivityMain().onBackPressed();
+                                            requireActivity().getOnBackPressedDispatcher().onBackPressed();
                                             enableButton.call(true);
                                         });
                                         dialog.dismiss();
@@ -94,7 +94,7 @@ public class FragmentPaymentView extends BaseFragment<FragmentPaymentViewBinding
                             builder.setMessage(String.format("%s?", getString(R.string.dialog_valid_payment)))
                                     .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
                                         DataNetHandler.getInstance().moderatePayment(payment, true, success -> {
-                                            getActivityMain().onBackPressed();
+                                            requireActivity().getOnBackPressedDispatcher().onBackPressed();
                                             enableButton.call(true);
                                         });
                                         dialog.dismiss();

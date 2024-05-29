@@ -15,7 +15,7 @@ import retrofit2.http.Query;
 
 public interface ApiServices {
 
-    @GET("status")
+    @GET("server/status")
     Call<ResponseBody> getStatus();
 
     @POST("user/login")

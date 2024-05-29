@@ -3,18 +3,21 @@ package com.unirest;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.work.Data;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
@@ -25,6 +28,7 @@ import com.unirest.api.IBackPressed;
 import com.unirest.api.IReload;
 import com.unirest.data.DataLocalHandler;
 import com.unirest.data.DataNetHandler;
+import com.unirest.data.models.ErrorMessage;
 import com.unirest.data.viewmodels.MainViewModel;
 import com.unirest.databinding.ActivityMainBinding;
 import com.unirest.ui.fragments.dormitory.FragmentDormitory;
@@ -39,6 +43,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class ActivityMain extends AppCompatActivity {
+    private Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler;
     private boolean doubleBack;
     private boolean forceSelect;
     private ActivityMainBinding binding;
@@ -133,6 +138,14 @@ public class ActivityMain extends AppCompatActivity {
                     }
                 }
             }
+        });
+
+        defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            ErrorMessage errorMessage = new ErrorMessage(ActivityMain.this, throwable);
+            Log.i("UniRest", "Sending error to server...");
+            DataNetHandler.getInstance().sendError(errorMessage);
+            defaultUncaughtExceptionHandler.uncaughtException(thread, throwable);
         });
 
         this.selectNav(R.id.home);

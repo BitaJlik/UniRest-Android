@@ -23,7 +23,7 @@
     <string name="dont_have_an_account">Don`t have an account?</string>
     <string name="scan">Scan</string>
     <string name="scan_again">Scan again</string>
-    <string name="basic_registration_for_user_identification_after_you_settle_in_the_administrator_will_ask_for_more_information">Basic registration for user identification, after you settle in, the administrator will ask for more information</string>
+    <string name="basic_registration_for_user_identification">Basic registration for user identification, after you settle in, the administrator will ask for more information</string>
     <string name="forgot_password">Forgot password</string>
     <string name="title_register">Register</string>
     <string name="title_authorization">Authorization</string>
@@ -161,8 +161,11 @@
     <string name="dialog_re_moderate">If the payment is verified, you can cancel the action, then the balance will be changed for the user</string>
     <string name="server_not_enabled">Server not enabled navigation disabled</string>
     <string name="dialog_floor_not_user">You are not on your floor, are you sure you want to continue</string>
-    <string name="reminder">Reminder</string>
+    <string name="notification_reminder">Reminder</string>
     <string name="notification_remind_washer">The washing machine has finished washing, please remove the items and release it</string>
     <string name="notification_remind_cooker">Your time on the stove is over, please release it</string>
     <string name="click_again_to_exit">Click again to exit</string>
+    <string name="not_permission">You dont have permission</string>
+    <string name="dialog_permit_view_permission">Scanning other users\' barcodes is prohibited for your role</string>
+    <string name="text_login_not_valid">Password or email is wrong</string>
 </resources>

@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.zxing.common.StringUtils;
 import com.unirest.R;
 import com.unirest.api.IBackPressed;
 import com.unirest.api.OnClickCallback;
@@ -79,6 +78,7 @@ public class FragmentLogin extends BaseFragment<FragmentLoginBinding> implements
                         });
                     }, error -> {
                         ui(() -> {
+                            Snackbar.make(view, getString(R.string.text_login_not_valid), Snackbar.LENGTH_LONG).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show();
                             enableButton.call(true);
                             binding.layoutInputs.setVisibility(View.VISIBLE);
                             binding.layoutProgress.setVisibility(View.GONE);

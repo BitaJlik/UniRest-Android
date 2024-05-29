@@ -125,7 +125,7 @@ public class FragmentPaymentEdit extends BaseFragment<FragmentPaymentEditBinding
                                                 if (uploaded) {
                                                     mainViewModel.creatingPayment.setValue(null);
                                                     Snackbar.make(view, getString(R.string.success_upload), Snackbar.LENGTH_LONG).show();
-                                                    requireActivity().onBackPressed();
+                                                    requireActivity().getOnBackPressedDispatcher().onBackPressed();
                                                 }
                                             });
                                         }

@@ -1,10 +1,13 @@
 package com.unirest.ui.fragments.scanner;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.budiyev.android.codescanner.AutoFocusMode;
 import com.budiyev.android.codescanner.CodeScanner;
@@ -21,6 +24,7 @@ import com.unirest.ui.fragments.washer.FragmentWasher;
 import java.util.Collections;
 
 public class FragmentScanner extends BaseFragment<FragmentScannerBinding> {
+    private static final int REQUEST_CAMERA_PERMISSION = 1;
     private CodeScanner codeScanner;
     private ICallback<String> callbackCode;
 
@@ -30,6 +34,17 @@ public class FragmentScanner extends BaseFragment<FragmentScannerBinding> {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        if (checkPermission()) {
+            initCamera();
+        } else {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{android.Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+            if (checkPermission()) {
+                initCamera();
+            }
+        }
+    }
+
+    private void initCamera() {
         codeScanner = new CodeScanner(requireContext(), binding.scannerView);
 
         codeScanner.setCamera(CodeScanner.CAMERA_BACK);
@@ -45,7 +60,7 @@ public class FragmentScanner extends BaseFragment<FragmentScannerBinding> {
                 if (code.startsWith(prefix)) {
                     codeScanner.stopPreview();
                     mainViewModel.barcode.setValue(code);
-                    getActivityMain().onBackPressed();
+                    requireActivity().getOnBackPressedDispatcher().onBackPressed();
                     if (callbackCode != null) {
                         callbackCode.call(code);
                     } else {
@@ -61,7 +76,6 @@ public class FragmentScanner extends BaseFragment<FragmentScannerBinding> {
                 }
             }
         }));
-
     }
 
     @Override
@@ -86,5 +100,10 @@ public class FragmentScanner extends BaseFragment<FragmentScannerBinding> {
 
     public void setCallbackCode(ICallback<String> callbackCode) {
         this.callbackCode = callbackCode;
+    }
+
+    private boolean checkPermission() {
+        return ContextCompat.checkSelfPermission(requireContext(),
+                android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
 }

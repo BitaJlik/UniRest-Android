@@ -65,7 +65,7 @@ public class FragmentCooker extends BaseFragment<FragmentCookerBinding> {
                                         DataNetHandler.getInstance().setBusyCooker(cooker.getId(), user.getId(), 0, false, callback -> {
                                             enableButton.call(true);
                                             binding.free.setVisibility(View.GONE);
-                                            getActivityMain().onBackPressed();
+                                            requireActivity().getOnBackPressedDispatcher().onBackPressed();
                                             changeFragment(new FragmentCooker(cookerId), true);
                                         });
                                         dialog.dismiss();
@@ -105,7 +105,7 @@ public class FragmentCooker extends BaseFragment<FragmentCookerBinding> {
                                         DataLocalHandler.getInstance().saveCookerReminder();
                                     }
                                     AsyncUtils.waitAsync(1000, () -> ui(() -> {
-                                        getActivityMain().onBackPressed();
+                                        requireActivity().getOnBackPressedDispatcher().onBackPressed();
                                         changeFragment(new FragmentCooker(cookerId), true);
                                         binding.busyLayout.setVisibility(View.GONE);
                                     }));

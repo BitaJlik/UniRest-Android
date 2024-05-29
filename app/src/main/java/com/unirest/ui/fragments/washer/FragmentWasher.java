@@ -65,7 +65,7 @@ public class FragmentWasher extends BaseFragment<FragmentWasherBinding> {
                                         DataNetHandler.getInstance().setBusyWasher(washer.getId(), user.getId(), 0, false, callback -> {
                                             enableButton.call(true);
                                             binding.free.setVisibility(View.GONE);
-                                            getActivityMain().onBackPressed();
+                                            requireActivity().getOnBackPressedDispatcher().onBackPressed();
                                             changeFragment(new FragmentWasher(washerId), true);
                                         });
                                         dialog.dismiss();
@@ -105,7 +105,7 @@ public class FragmentWasher extends BaseFragment<FragmentWasherBinding> {
                                         DataLocalHandler.getInstance().saveWasherReminder();
                                     }
                                     AsyncUtils.waitAsync(1000, () -> ui(() -> {
-                                        getActivityMain().onBackPressed();
+                                        requireActivity().getOnBackPressedDispatcher().onBackPressed();
                                         changeFragment(new FragmentWasher(washerId), true);
                                         binding.busyLayout.setVisibility(View.GONE);
                                     }));

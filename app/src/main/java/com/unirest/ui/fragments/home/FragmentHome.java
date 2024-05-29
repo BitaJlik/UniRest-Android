@@ -17,6 +17,7 @@ import com.unirest.api.UniCode;
 import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentHomeBinding;
 import com.unirest.ui.common.BaseFragment;
+import com.unirest.ui.fragments.login.FragmentLogin;
 import com.unirest.utils.AsyncUtils;
 
 import java.text.DateFormat;
@@ -51,7 +52,9 @@ public class FragmentHome extends BaseFragment<FragmentHomeBinding> {
                         binding.shimmer.setVisibility(View.GONE);
                         binding.shimmer.hideShimmer();
 
-                        binding.barcode.setText(String.format("%s%s", UniCode.PREFIX_USER, fixNumber(user.getId(), 7)));
+                        String barcodeTip = UniCode.PREFIX_USER + fixNumber(user.getId(), 7);
+
+                        binding.barcode.setText(barcodeTip);
 
                         binding.imageBarcode.post(() -> {
                             binding.imageBarcode.setVisibility(View.VISIBLE);
@@ -60,7 +63,8 @@ public class FragmentHome extends BaseFragment<FragmentHomeBinding> {
                             int height = binding.imageBarcode.getHeight();
                             if (width > 0 && height > 0) {
                                 try {
-                                    binding.imageBarcode.setImageBitmap(createImage(UniCode.PREFIX_USER + fixNumber(user.getId(), 7), width, height));
+                                    Bitmap image = createImage(barcodeTip, width, height);
+                                    binding.imageBarcode.setImageBitmap(image);
                                     barcodeValid = true;
                                 } catch (WriterException e) {
                                     barcodeValid = false;

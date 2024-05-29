@@ -109,7 +109,7 @@
                         android:layout_marginHorizontal="5dp"
                         android:layout_marginVertical="5dp"
                         android:gravity="center"
-                        android:text="@string/basic_registration_for_user_identification_after_you_settle_in_the_administrator_will_ask_for_more_information"
+                        android:text="@string/basic_registration_for_user_identification"
                         android:textColor="@color/text_primary" />
 
                 </LinearLayout>

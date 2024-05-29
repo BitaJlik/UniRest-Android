@@ -23,7 +23,7 @@
     <string name="dont_have_an_account">Немає облікового запису\?</string>
     <string name="scan">Сканувати</string>
     <string name="scan_again">Сканувати знову</string>
-    <string name="basic_registration_for_user_identification_after_you_settle_in_the_administrator_will_ask_for_more_information">Базова реєстрація для ідентифікації користувача, після того, як ви поселитеся, адміністратор запитає додаткову інформацію</string>
+    <string name="basic_registration_for_user_identification">Базова реєстрація для ідентифікації користувача, після того, як ви поселитеся, адміністратор запитає додаткову інформацію</string>
     <string name="forgot_password">Забули пароль</string>
     <string name="title_register">Реєстрація</string>
     <string name="title_authorization">Авторизація</string>
@@ -161,8 +161,11 @@
     <string name="dialog_re_moderate">Якщо платіж підтверджено, ви можете скасувати дію, тоді баланс буде змінено для користувача</string>
     <string name="server_not_enabled">Сервер не ввімкнено, навігацію вимкнено</string>
     <string name="dialog_floor_not_user">Ви не на своєму поверсі, ви впевнені, що бажаєте продовжити</string>
-    <string name="reminder">Нагадування</string>
+    <string name="notification_reminder">Нагадування</string>
     <string name="notification_remind_washer">Пральна машина закінчила прання, вийміть речі та звільніть її</string>
     <string name="notification_remind_cooker">Ваш час на плиті закінчився, будь ласка, звільніть її</string>
     <string name="click_again_to_exit">Натисніть ще раз, щоб вийти</string>
+    <string name="not_permission">У вас немає дозволу</string>
+    <string name="dialog_permit_view_permission">Для вашої ролі заборонено сканувати штрих-коди інших користувачів</string>
+    <string name="text_login_not_valid">Пароль або електронна адреса неправильні</string>
 </resources>
