@@ -24,7 +24,7 @@ import com.unirest.ui.common.BaseFragment;
 import java.util.Collections;
 
 public class FragmentRoom extends BaseFragment<FragmentRoomBinding> {
-    private final UserAdapter adapter = new UserAdapter();
+    private final RoomUserAdapter adapter = new RoomUserAdapter();
     private NotificationViewModel notificationViewModel;
 
     public FragmentRoom() {
@@ -47,76 +47,87 @@ public class FragmentRoom extends BaseFragment<FragmentRoomBinding> {
                 binding.room.setText(String.format("%s %s", getString(R.string.room), room.getNumber()));
                 DataNetHandler.getInstance().verifyAuth(token, isVerified -> {
                     if (isVerified) {
-                        DataNetHandler.getInstance().getUsers(room.getId(), users -> {
-                            if (users.isEmpty()) return;
+                        mainViewModel.user.observe(getViewLifecycleOwner(), mainUser -> {
 
-                            adapter.setItems(users);
+                            DataNetHandler.getInstance().getUsers(room.getId(), users -> {
+                                if (users.isEmpty()) return;
+                                if (!isVisible()) return;
 
-                            adapter.setEmailLongCallback(user -> {
-                                Intent intent = new Intent(Intent.ACTION_SEND);
-                                intent.setType("plain/text");
-                                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{user.getEmail()});
-                                startActivity(Intent.createChooser(intent, ""));
-                            });
+                                boolean adminPermission = mainUser.getRole().getLevel() > 1;
 
-                            adapter.setPhoneLongCallback(user -> {
-                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+" + user.getPhoneNumber()));
-                                startActivity(intent);
-                            });
+                                adapter.setItems(users);
 
-                            adapter.setCallToMeCallbackNow(user -> {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                                adapter.setEmailLongCallback(user -> {
+                                    Intent intent = new Intent(Intent.ACTION_SEND);
+                                    intent.setType("plain/text");
+                                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{user.getEmail()});
+                                    startActivity(Intent.createChooser(intent, ""));
+                                });
 
-                                builder.setMessage(String.format("%s?", getString(R.string.dialog_call_user_now)))
-                                        .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
-                                            User sender = mainViewModel.user.getValue();
-                                            if (sender != null) {
-                                                NotificationRequest request = NotificationRequest.fastCallRequest(Collections.singletonList(user), requireContext());
-                                                DataNetHandler.getInstance().callToMe(sender.getId(), request, sent -> {
-                                                    if (isVisible()) {
-                                                        Snackbar.make(view, sent ? R.string.sent : R.string.error, Snackbar.LENGTH_LONG).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show();
-                                                    }
-                                                });
-                                            }
-                                            dialog.dismiss();
-                                        })
-                                        .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {
-                                            dialog.dismiss();
-                                        });
-                                builder.show();
-                            });
+                                adapter.setPhoneLongCallback(user -> {
+                                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+" + user.getPhoneNumber()));
+                                    startActivity(intent);
+                                });
 
-                            adapter.setAddUserToNotifyCallback(user -> {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                                adapter.setCallToMeCallbackNow(user -> {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
-                                builder.setMessage(String.format("%s?", getString(R.string.dialog_add_user_notification)))
-                                        .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
-                                            notificationViewModel.users.getValue().add(user);
-                                            dialog.dismiss();
-                                        })
-                                        .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {
-                                            dialog.dismiss();
-                                        });
-                                builder.show();
-                            });
+                                    builder.setMessage(String.format("%s?", getString(R.string.dialog_call_user_now)))
+                                            .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+                                                User sender = mainViewModel.user.getValue();
+                                                if (sender != null) {
+                                                    NotificationRequest request = NotificationRequest.fastCallRequest(Collections.singletonList(user), requireContext());
+                                                    DataNetHandler.getInstance().callToMe(sender.getId(), request, sent -> {
+                                                        if (isVisible()) {
+                                                            Snackbar.make(view, sent ? R.string.sent : R.string.error, Snackbar.LENGTH_LONG).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show();
+                                                        }
+                                                    });
+                                                }
+                                                dialog.dismiss();
+                                            })
+                                            .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {
+                                                dialog.dismiss();
+                                            });
+                                    builder.show();
+                                });
 
+                                adapter.setAddUserToNotifyCallback(user -> {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
-                            if (isVisible()) {
-                                binding.shimmer.hideShimmer();
-                                binding.shimmer.setVisibility(View.GONE);
-                                binding.itemsRV.setVisibility(View.VISIBLE);
-                            }
+                                    builder.setMessage(String.format("%s?", getString(R.string.dialog_add_user_notification)))
+                                            .setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+                                                notificationViewModel.users.getValue().add(user);
+                                                dialog.dismiss();
+                                            })
+                                            .setNegativeButton(getString(R.string.cancel), (dialog, which) -> {
+                                                dialog.dismiss();
+                                            });
+                                    builder.show();
+                                });
 
-                            binding.callAll.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                                User sender = mainViewModel.user.getValue();
-                                if (sender != null) {
-                                    NotificationRequest request = NotificationRequest.fastCallRequest(users, requireContext());
-                                    DataNetHandler.getInstance().callToMe(sender.getId(), request, sent -> {
-                                        if (isVisible()) {
-                                            Snackbar.make(view, sent ? R.string.sent : R.string.error, Snackbar.LENGTH_LONG).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show();
+                                adapter.setAdminPermission(adminPermission);
+
+                                if (isVisible()) {
+                                    binding.shimmer.hideShimmer();
+                                    binding.shimmer.setVisibility(View.GONE);
+                                    binding.itemsRV.setVisibility(View.VISIBLE);
+                                }
+
+                                if (adminPermission) {
+                                    binding.callAll.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                                        User sender = mainViewModel.user.getValue();
+                                        if (sender != null) {
+                                            NotificationRequest request = NotificationRequest.fastCallRequest(users, requireContext());
+                                            DataNetHandler.getInstance().callToMe(sender.getId(), request, sent -> {
+                                                if (isVisible()) {
+                                                    Snackbar.make(view, sent ? R.string.sent : R.string.error, Snackbar.LENGTH_LONG).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE).show();
+                                                }
+                                            });
+                                            enableButton.call(true);
                                         }
                                     });
-                                    enableButton.call(true);
+                                } else {
+                                    binding.callAll.setVisibility(View.GONE);
                                 }
                             });
                         });

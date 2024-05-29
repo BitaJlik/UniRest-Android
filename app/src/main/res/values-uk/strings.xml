@@ -133,6 +133,7 @@
     <string name="washer">Пральна машина</string>
     <string name="minute_short">хв</string>
     <string name="choose_time_washer">Виберіть час, скільки пральна машина буде зайнята</string>
+    <string name="choose_time_cooker">Виберіть час, скільки плита буде зайнята</string>
     <string name="remind_when_done">Нагадати, коли завершиться</string>
     <string name="free">Звільнити</string>
     <string name="free_washer_description">Після звільнення пральної машини її може забрати хтось інший</string>
@@ -166,6 +167,10 @@
     <string name="notification_remind_cooker">Ваш час на плиті закінчився, будь ласка, звільніть її</string>
     <string name="click_again_to_exit">Натисніть ще раз, щоб вийти</string>
     <string name="not_permission">У вас немає дозволу</string>
-    <string name="dialog_permit_view_permission">Для вашої ролі заборонено сканувати штрих-коди інших користувачів</string>
+    <string name="dialog_permit_barcode_view_permission">Для вашої ролі заборонено сканувати штрих-коди інших користувачів</string>
     <string name="text_login_not_valid">Пароль або електронна адреса неправильні</string>
+    <string name="dialog_permit_view_permission">Ваша роль не має достатніх прав для перегляду цих даних</string>
+    <string name="search">Пошук</string>
+    <string name="text_input_search">Введіть ім\'я або прізвище</string>
+    <string name="only_in_my_dormitory">Тільки в моєму гуртожитку</string>
 </resources>

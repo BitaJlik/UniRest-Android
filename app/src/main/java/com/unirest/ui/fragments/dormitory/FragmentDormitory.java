@@ -10,12 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.unirest.R;
+import com.unirest.api.ICallback;
 import com.unirest.api.OnClickCallback;
 import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentDormitoryBinding;
 import com.unirest.ui.common.BaseFragment;
 import com.unirest.ui.fragments.floors.FragmentFloors;
 import com.unirest.ui.fragments.moderate.FragmentModerate;
+import com.unirest.ui.fragments.search.FragmentSearch;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -95,12 +97,19 @@ public class FragmentDormitory extends BaseFragment<FragmentDormitoryBinding> {
 
                     if (user.getRole().getLevel() > 1) {
                         binding.moderate.setVisibility(View.VISIBLE);
+                        binding.search.setVisibility(View.VISIBLE);
                         binding.moderate.setOnClickListener((OnClickCallback) (v, enableButton) -> {
                             changeFragment(new FragmentModerate(), true);
                             enableButton.call(true);
                         });
+
+                        binding.search.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                            changeFragment(new FragmentSearch(),true);
+                            enableButton.call(true);
+                        });
                     } else {
                         binding.moderate.setVisibility(View.GONE);
+                        binding.search.setVisibility(View.GONE);
                     }
                 });
             });

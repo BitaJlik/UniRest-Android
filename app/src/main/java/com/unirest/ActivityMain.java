@@ -10,20 +10,16 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.work.Data;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 import com.unirest.api.IBackPressed;
 import com.unirest.api.IReload;
 import com.unirest.data.DataLocalHandler;
@@ -38,8 +34,6 @@ import com.unirest.ui.fragments.profile.FragmentProfile;
 import com.unirest.ui.fragments.scanner.FragmentScanner;
 import com.unirest.utils.AsyncUtils;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class ActivityMain extends AppCompatActivity {
@@ -151,8 +145,8 @@ public class ActivityMain extends AppCompatActivity {
         this.selectNav(R.id.home);
         this.changeFragment(new FragmentHome());
 
-        WorkRequest dataCheckWorkRequest = new PeriodicWorkRequest.Builder(ReminderWorker.class, 5, TimeUnit.MINUTES).build();
-        WorkManager.getInstance(this).enqueue(dataCheckWorkRequest);
+//        WorkRequest dataCheckWorkRequest = new PeriodicWorkRequest.Builder(ReminderWorker.class, 5, TimeUnit.MINUTES).build();
+//        WorkManager.getInstance(this).enqueue(dataCheckWorkRequest);
     }
 
     public void updateUser() {

@@ -38,9 +38,9 @@ public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
                 DataNetHandler.getInstance().verifyAuth(token, isVerified -> {
                     if (isVerified) {
                         boolean userOnFloor;
-                        User value = mainViewModel.user.getValue();
-                        if (value != null) {
-                            userOnFloor = value.getRoom().getFloorId().equals(floor.getId());
+                        User mainUser = mainViewModel.user.getValue();
+                        if (mainUser != null) {
+                            userOnFloor = mainUser.getRoom().getFloorId().equals(floor.getId());
                         } else {
                             userOnFloor = false;
                         }
@@ -54,7 +54,7 @@ public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
                                     enableButton.call(true);
                                 } else {
                                     showFloorDialog(enableButton, continueButton -> {
-                                        if(continueButton){
+                                        if (continueButton) {
                                             changeFragment(new FragmentWashers(), true);
                                             enableButton.call(true);
                                         }
@@ -72,7 +72,7 @@ public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
                                     enableButton.call(true);
                                 } else {
                                     showFloorDialog(enableButton, continueButton -> {
-                                        if(continueButton){
+                                        if (continueButton) {
                                             changeFragment(new FragmentCookers(), true);
                                             enableButton.call(true);
                                         }
@@ -87,8 +87,18 @@ public class FragmentRooms extends BaseFragment<FragmentRoomsBinding> {
 
                             adapter.setItems(rooms);
                             adapter.setRoomCallback(room -> {
-                                mainViewModel.selectedRoom.setValue(room);
-                                changeFragment(new FragmentRoom(), true);
+                                if (mainUser != null && (mainUser.getRole().getLevel() > 1 || mainUser.getRoom().getId().equals(room.getId()))) {
+                                    mainViewModel.selectedRoom.setValue(room);
+                                    changeFragment(new FragmentRoom(), true);
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                                    builder.setMessage(R.string.dialog_permit_view_permission)
+                                            .setPositiveButton("OK", (dialog, which) -> {
+                                                dialog.dismiss();
+                                            });
+                                    builder.show();
+                                }
+
                             });
 
                             if (isVisible()) {

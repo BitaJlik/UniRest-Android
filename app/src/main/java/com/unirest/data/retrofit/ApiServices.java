@@ -57,6 +57,9 @@ public interface ApiServices {
     @GET("user/image/{id}")
     Call<ResponseBody> getImage(@Path("id") Long id);
 
+    @GET("user/search")
+    Call<ResponseBody> searchUser(@Query("name") String name, @Query("id") Long id);
+
     @GET("payment/check/{id}")
     Call<ResponseBody> getImagePayment(@Path("id") String checkId);
 

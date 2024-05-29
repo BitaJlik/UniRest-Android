@@ -133,6 +133,7 @@
     <string name="washer">Washer</string>
     <string name="minute_short">m</string>
     <string name="choose_time_washer">Choose time what washer will be busy</string>
+    <string name="choose_time_cooker">Choose time what cooker will be busy</string>
     <string name="remind_when_done">Remind when done</string>
     <string name="free">Free</string>
     <string name="free_washer_description">After vacating the washing machine, someone else can take it</string>
@@ -166,6 +167,10 @@
     <string name="notification_remind_cooker">Your time on the stove is over, please release it</string>
     <string name="click_again_to_exit">Click again to exit</string>
     <string name="not_permission">You dont have permission</string>
-    <string name="dialog_permit_view_permission">Scanning other users\' barcodes is prohibited for your role</string>
+    <string name="dialog_permit_barcode_view_permission">Scanning other users\' barcodes is prohibited for your role</string>
     <string name="text_login_not_valid">Password or email is wrong</string>
+    <string name="dialog_permit_view_permission">Your role does not have sufficient permissions to view this data</string>
+    <string name="search">Search</string>
+    <string name="text_input_search">Input name or last name</string>
+    <string name="only_in_my_dormitory">Only in my dormitory</string>
 </resources>

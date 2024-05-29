@@ -20,13 +20,15 @@ import com.unirest.databinding.ItemUserBinding;
 
 import java.util.Locale;
 
-public class UserAdapter extends BaseAdapter<User> {
+public class RoomUserAdapter extends BaseAdapter<User> {
     private static ICallback<User> userICallback;
 
     private static ICallback<User> addUserToNotifyCallback;
     private static ICallback<User> callToMeCallbackNow;
     private static ICallback<User> phoneLongCallback;
     private static ICallback<User> emailLongCallback;
+
+    private static boolean isAdminPermission = false;
 
     {
         addHolder(new HolderPair(UserHolder.class, R.layout.item_user));
@@ -74,6 +76,23 @@ public class UserAdapter extends BaseAdapter<User> {
                 });
             });
 
+            if (isAdminPermission) {
+                binding.hereImage.setVisibility(View.VISIBLE);
+                binding.phoneImage.setVisibility(View.VISIBLE);
+                binding.emailImage.setVisibility(View.VISIBLE);
+
+                binding.email.setVisibility(View.VISIBLE);
+                binding.phone.setVisibility(View.VISIBLE);
+                binding.balance.setVisibility(View.VISIBLE);
+            } else {
+                binding.hereImage.setVisibility(View.GONE);
+                binding.phoneImage.setVisibility(View.GONE);
+                binding.emailImage.setVisibility(View.GONE);
+
+                binding.email.setVisibility(View.GONE);
+                binding.phone.setVisibility(View.GONE);
+                binding.balance.setVisibility(View.GONE);
+            }
 
             TooltipCompat.setTooltipText(binding.hereImage, context.getString(R.string.call_to_me));
             TooltipCompat.setTooltipText(binding.phoneImage, context.getString(R.string.call_on_phone));
@@ -118,23 +137,27 @@ public class UserAdapter extends BaseAdapter<User> {
     }
 
     public void setPhoneLongCallback(ICallback<User> phoneLongCallback) {
-        UserAdapter.phoneLongCallback = phoneLongCallback;
+        RoomUserAdapter.phoneLongCallback = phoneLongCallback;
     }
 
     public void setEmailLongCallback(ICallback<User> emailLongCallback) {
-        UserAdapter.emailLongCallback = emailLongCallback;
+        RoomUserAdapter.emailLongCallback = emailLongCallback;
     }
 
     public void setUserICallback(ICallback<User> userICallback) {
-        UserAdapter.userICallback = userICallback;
+        RoomUserAdapter.userICallback = userICallback;
     }
 
     public void setAddUserToNotifyCallback(ICallback<User> addUserToNotifyCallback) {
-        UserAdapter.addUserToNotifyCallback = addUserToNotifyCallback;
+        RoomUserAdapter.addUserToNotifyCallback = addUserToNotifyCallback;
     }
 
     public void setCallToMeCallbackNow(ICallback<User> callToMeCallbackNow) {
-        UserAdapter.callToMeCallbackNow = callToMeCallbackNow;
+        RoomUserAdapter.callToMeCallbackNow = callToMeCallbackNow;
+    }
+
+    public void setAdminPermission(boolean adminPermission) {
+        isAdminPermission = adminPermission;
     }
 }
 

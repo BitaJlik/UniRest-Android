@@ -18,6 +18,7 @@ import com.unirest.data.models.Payment;
 import com.unirest.data.models.Room;
 import com.unirest.data.models.User;
 import com.unirest.data.models.UserPermit;
+import com.unirest.data.models.UserSearch;
 import com.unirest.data.models.Washer;
 import com.unirest.data.retrofit.ApiServices;
 import com.unirest.utils.DataCacheHandler;
@@ -175,6 +176,24 @@ public class DataNetHandler {
             @Override
             public void onJson(Response<ResponseBody> response, String jsonString) {
                 User user = new Gson().fromJson(jsonString, User.class);
+                call(callback, user);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void searchUser(String name,Long dormitoryId, ICallback<List<UserSearch>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.searchUser(name, dormitoryId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                List<UserSearch> user = new Gson().fromJson(jsonString, new TypeToken<List<UserSearch>>() {
+                });
                 call(callback, user);
             }
 

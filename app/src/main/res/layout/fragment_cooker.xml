@@ -45,14 +45,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:visibility="gone"
                 android:layout_marginVertical="10dp"
                 android:text="@string/busy_for"
                 android:textColor="@color/text_primary"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/timeElapsed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +59,8 @@
                 android:layout_marginBottom="40dp"
                 android:text="@string/busy_since"
                 android:textColor="@color/text_primary"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/free"
@@ -92,7 +92,7 @@
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
                     android:paddingHorizontal="20dp"
-                    android:text="@string/choose_time_washer"
+                    android:text="@string/choose_time_cooker"
                     android:textColor="@color/text_primary"
                     android:textSize="18sp" />
 

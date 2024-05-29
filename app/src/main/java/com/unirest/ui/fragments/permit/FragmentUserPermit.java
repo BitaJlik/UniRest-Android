@@ -10,7 +10,6 @@ import androidx.appcompat.app.AlertDialog;
 import com.squareup.picasso.Picasso;
 import com.unirest.R;
 import com.unirest.api.UniCode;
-import com.unirest.data.DataLocalHandler;
 import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentProfileOpenBinding;
 import com.unirest.ui.common.BaseFragment;
@@ -52,7 +51,7 @@ public class FragmentUserPermit extends BaseFragment<FragmentProfileOpenBinding>
                         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
                         builder.setTitle(getString(R.string.not_permission));
                         builder.setCancelable(false);
-                        builder.setMessage(getString(R.string.dialog_permit_view_permission))
+                        builder.setMessage(getString(R.string.dialog_permit_barcode_view_permission))
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     dialog.dismiss();
                                     isDialogShowing = false;
