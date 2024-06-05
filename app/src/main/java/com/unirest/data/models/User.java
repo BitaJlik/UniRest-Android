@@ -21,6 +21,10 @@ public class User implements IDiff<User> {
 
     private UserRole role;
 
+    public static class UserStub extends User {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -124,7 +128,6 @@ public class User implements IDiff<User> {
     public void setEmailVerified(boolean emailVerified) {
         this.emailVerified = emailVerified;
     }
-
 
 
     public Room getRoom() {

@@ -173,4 +173,11 @@
     <string name="search">Search</string>
     <string name="text_input_search">Input name or last name</string>
     <string name="only_in_my_dormitory">Only in my dormitory</string>
+    <string name="add_user_to_room">Add user to room</string>
+    <string name="remove_user_from_room">Remove user from room</string>
+    <string name="dialog_remove_user_from_room">Remove user from room? You are not deleting user from database and you can again set user other room or this same</string>
+    <string name="choose_user_in_room">Choose user which will be added to room</string>
+    <string name="without_room">Without room</string>
+    <string name="or">Or</string>
+    <string name="edit">Edit</string>
 </resources>

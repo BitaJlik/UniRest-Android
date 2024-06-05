@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Room 215"
+        android:text="@string/room"
         android:textColor="@color/text_primary"
         android:textSize="20sp" />
 
@@ -58,6 +58,7 @@
 
 
     <com.google.android.material.button.MaterialButton
+        android:enabled="false"
         android:id="@+id/call_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

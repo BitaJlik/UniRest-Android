@@ -123,12 +123,12 @@ public class ActivityMain extends AppCompatActivity {
                             currentFragment instanceof FragmentScanner ||
                             currentFragment instanceof FragmentNotifications ||
                             currentFragment instanceof FragmentProfile) {
-                        changeFragment(new FragmentHome(), false);
-                        selectNav(R.id.home);
+                        ActivityMain.this.changeFragment(new FragmentHome(), false);
+                        ActivityMain.this.selectNav(R.id.home);
                     } else {
-                        setEnabled(false);
-                        getOnBackPressedDispatcher().onBackPressed();
-                        setEnabled(true);
+                        this.setEnabled(false);
+                        ActivityMain.this.getOnBackPressedDispatcher().onBackPressed();
+                        this.setEnabled(true);
                     }
                 }
             }

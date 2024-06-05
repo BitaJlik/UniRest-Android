@@ -178,9 +178,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
                 android:padding="20dp">
 
                 <com.google.android.material.button.MaterialButton
@@ -191,8 +191,8 @@
                     android:layout_marginVertical="5dp"
                     android:layout_weight="1"
                     android:autoSizeTextType="uniform"
-                    android:text="@string/contact_with_commandant"
                     android:drawableTint="@color/text_primary"
+                    android:text="@string/contact_with_commandant"
                     app:icon="@drawable/ic_phone"
                     app:iconSize="22dp" />
 
@@ -204,8 +204,8 @@
                     android:layout_marginVertical="5dp"
                     android:layout_weight="1"
                     android:autoSizeTextType="uniform"
-                    android:text="@string/additional_phones"
                     android:drawableTint="@color/text_primary"
+                    android:text="@string/additional_phones"
                     app:icon="@drawable/ic_phone_book"
                     app:iconSize="22dp" />
 
@@ -230,9 +230,9 @@
                     android:layout_marginVertical="5dp"
                     android:layout_weight="1"
                     android:autoSizeTextType="uniform"
+                    android:drawableTint="@color/text_primary"
                     android:text="@string/moderate_requests"
                     android:visibility="gone"
-                    android:drawableTint="@color/text_primary"
                     app:icon="@drawable/ic_moderate_document"
                     app:iconSize="22dp" />
 
@@ -244,9 +244,9 @@
                     android:layout_marginVertical="5dp"
                     android:layout_weight="1"
                     android:autoSizeTextType="uniform"
+                    android:drawableTint="@color/text_primary"
                     android:text="@string/moderate_payments"
                     android:visibility="gone"
-                    android:drawableTint="@color/text_primary"
                     app:icon="@drawable/ic_payment"
                     app:iconSize="22dp" />
 
@@ -258,8 +258,8 @@
                     android:layout_marginVertical="5dp"
                     android:layout_weight="1"
                     android:autoSizeTextType="uniform"
-                    android:text="@string/leave_request"
                     android:drawableTint="@color/text_primary"
+                    android:text="@string/leave_request"
                     app:icon="@drawable/ic_file_edit"
                     app:iconSize="22dp" />
 
@@ -287,6 +287,19 @@
                     android:drawableTint="@color/text_primary"
                     android:text="@string/search"
                     app:icon="@drawable/ic_search_person"
+                    app:iconSize="22dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="1"
+                    android:autoSizeTextType="uniform"
+                    android:drawableTint="@color/text_primary"
+                    android:text="@string/edit"
+                    app:icon="@drawable/ic_edit_dormitory"
                     app:iconSize="22dp" />
 
             </LinearLayout>

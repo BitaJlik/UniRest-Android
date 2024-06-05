@@ -15,6 +15,7 @@ import com.unirest.api.OnClickCallback;
 import com.unirest.data.DataNetHandler;
 import com.unirest.databinding.FragmentDormitoryBinding;
 import com.unirest.ui.common.BaseFragment;
+import com.unirest.ui.fragments.dormitory.edit.FragmentEditDormitory;
 import com.unirest.ui.fragments.floors.FragmentFloors;
 import com.unirest.ui.fragments.moderate.FragmentModerate;
 import com.unirest.ui.fragments.search.FragmentSearch;
@@ -92,6 +93,11 @@ public class FragmentDormitory extends BaseFragment<FragmentDormitoryBinding> {
                     binding.callCommandant.setOnClickListener((OnClickCallback) (v, enableButton) -> {
                         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+" + dormitory.getCommandantInfo().getPhone()));
                         startActivity(intent);
+                        enableButton.call(true);
+                    });
+
+                    binding.edit.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                        changeFragment(new FragmentEditDormitory(),true);
                         enableButton.call(true);
                     });
 

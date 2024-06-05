@@ -173,4 +173,11 @@
     <string name="search">Пошук</string>
     <string name="text_input_search">Введіть ім\'я або прізвище</string>
     <string name="only_in_my_dormitory">Тільки в моєму гуртожитку</string>
+    <string name="add_user_to_room">Додати користувача до кімнати</string>
+    <string name="remove_user_from_room">Видалити користувача з кімнати</string>
+    <string name="dialog_remove_user_from_room">Видалити користувача з кімнати\? Ви не видаляєте користувача з бази даних, і ви можете знову встановити для користувача іншу кімнату або ту саму</string>
+    <string name="choose_user_in_room">Виберіть користувача, який буде доданий до кімнати</string>
+    <string name="without_room">Без кімнати</string>
+    <string name="or">Або</string>
+    <string name="edit">Редагувати</string>
 </resources>

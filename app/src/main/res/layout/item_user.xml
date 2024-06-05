@@ -109,16 +109,27 @@
                     android:textColor="@color/text_primary" />
 
                 <LinearLayout
+                    android:id="@+id/adminLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginHorizontal="5dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/removeImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_remove_user"
+                        app:tint="@color/text_primary" />
+
 
                     <ImageView
                         android:id="@+id/hereImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_here"
                         app:tint="@color/text_primary" />

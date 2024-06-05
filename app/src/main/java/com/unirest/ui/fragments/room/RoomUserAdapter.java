@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.TooltipCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.unirest.R;
@@ -21,17 +22,27 @@ import com.unirest.databinding.ItemUserBinding;
 import java.util.Locale;
 
 public class RoomUserAdapter extends BaseAdapter<User> {
+    private static boolean isAdminPermission = false;
+
     private static ICallback<User> userICallback;
 
     private static ICallback<User> addUserToNotifyCallback;
     private static ICallback<User> callToMeCallbackNow;
     private static ICallback<User> phoneLongCallback;
     private static ICallback<User> emailLongCallback;
+    private static ICallback<User> removeUserToRoomCallback;
+    private static ICallback<Void> addUserToRoomCallback;
 
-    private static boolean isAdminPermission = false;
+
 
     {
         addHolder(new HolderPair(UserHolder.class, R.layout.item_user));
+        addHolder(new HolderPair(UserFooterHolder.class, R.layout.item_user_footer));
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position == (getItems().size() - 1) ? 1 : 0;
     }
 
 
@@ -45,6 +56,8 @@ public class RoomUserAdapter extends BaseAdapter<User> {
 
         @Override
         public void bind(User user) {
+            if (user instanceof User.UserStub) return;
+
             Context context = itemView.getContext();
             binding.name.setText(user.getName());
             binding.surname.setText(user.getSurName());
@@ -53,12 +66,6 @@ public class RoomUserAdapter extends BaseAdapter<User> {
             binding.phone.setText(String.format("+%s", PhoneNumberUtils.formatNumber(user.getPhoneNumber(), Locale.getDefault().getCountry())));
             binding.email.setText(user.getEmail());
 
-            if (userICallback != null) {
-                binding.getRoot().setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                    userICallback.call(user);
-                    enableButton.call(true);
-                });
-            }
 
             DataNetHandler.getInstance().getUrlImageUser(user, url -> {
                 Picasso.get().load(url).into(binding.image, new Callback() {
@@ -76,18 +83,22 @@ public class RoomUserAdapter extends BaseAdapter<User> {
                 });
             });
 
+
             if (isAdminPermission) {
-                binding.hereImage.setVisibility(View.VISIBLE);
-                binding.phoneImage.setVisibility(View.VISIBLE);
-                binding.emailImage.setVisibility(View.VISIBLE);
+                binding.adminLayout.setVisibility(View.VISIBLE);
 
                 binding.email.setVisibility(View.VISIBLE);
                 binding.phone.setVisibility(View.VISIBLE);
                 binding.balance.setVisibility(View.VISIBLE);
+
+                if (userICallback != null) {
+                    binding.getRoot().setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                        userICallback.call(user);
+                        enableButton.call(true);
+                    });
+                }
             } else {
-                binding.hereImage.setVisibility(View.GONE);
-                binding.phoneImage.setVisibility(View.GONE);
-                binding.emailImage.setVisibility(View.GONE);
+                binding.adminLayout.setVisibility(View.GONE);
 
                 binding.email.setVisibility(View.GONE);
                 binding.phone.setVisibility(View.GONE);
@@ -97,6 +108,7 @@ public class RoomUserAdapter extends BaseAdapter<User> {
             TooltipCompat.setTooltipText(binding.hereImage, context.getString(R.string.call_to_me));
             TooltipCompat.setTooltipText(binding.phoneImage, context.getString(R.string.call_on_phone));
             TooltipCompat.setTooltipText(binding.emailImage, context.getString(R.string.text_on_email));
+            TooltipCompat.setTooltipText(binding.removeImage, context.getString(R.string.remove_user_from_room));
 
             binding.hereImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
                 PopupMenu popupMenu = new PopupMenu(context, binding.hereImage);
@@ -132,8 +144,31 @@ public class RoomUserAdapter extends BaseAdapter<User> {
                     enableButton.call(true);
                 });
             }
+            if (removeUserToRoomCallback != null) {
+                binding.removeImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                    removeUserToRoomCallback.call(user);
+                    enableButton.call(true);
+                });
+            }
         }
 
+    }
+
+    public static class UserFooterHolder extends BaseHolder<User> {
+        public UserFooterHolder(@NonNull View view) {
+            super(view);
+        }
+
+        @Override
+        public void bind(User user) {
+            if (addUserToRoomCallback != null) {
+                MaterialButton button = itemView.findViewById(R.id.addUser);
+                button.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                    addUserToRoomCallback.call(null);
+                    enableButton.call(true);
+                });
+            }
+        }
     }
 
     public void setPhoneLongCallback(ICallback<User> phoneLongCallback) {
@@ -142,6 +177,14 @@ public class RoomUserAdapter extends BaseAdapter<User> {
 
     public void setEmailLongCallback(ICallback<User> emailLongCallback) {
         RoomUserAdapter.emailLongCallback = emailLongCallback;
+    }
+
+    public void setAddUserToRoomCallback(ICallback<Void> addUserToRoomCallback) {
+        RoomUserAdapter.addUserToRoomCallback = addUserToRoomCallback;
+    }
+
+    public void setRemoveUserToRoomCallback(ICallback<User> removeUserToRoomCallback) {
+        RoomUserAdapter.removeUserToRoomCallback = removeUserToRoomCallback;
     }
 
     public void setUserICallback(ICallback<User> userICallback) {
@@ -159,5 +202,6 @@ public class RoomUserAdapter extends BaseAdapter<User> {
     public void setAdminPermission(boolean adminPermission) {
         isAdminPermission = adminPermission;
     }
+
 }
 

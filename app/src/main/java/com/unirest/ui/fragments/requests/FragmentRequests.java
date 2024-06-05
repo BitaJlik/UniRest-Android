@@ -17,6 +17,6 @@ public class FragmentRequests extends BaseFragment<FragmentRequestsBinding> {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+        // TODO: 06.06.2024 Done requests
     }
 }

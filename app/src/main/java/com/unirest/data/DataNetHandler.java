@@ -15,6 +15,8 @@ import com.unirest.data.models.Floor;
 import com.unirest.data.models.Notification;
 import com.unirest.data.models.NotificationRequest;
 import com.unirest.data.models.Payment;
+import com.unirest.data.models.Request;
+import com.unirest.data.models.RequestRegister;
 import com.unirest.data.models.Room;
 import com.unirest.data.models.User;
 import com.unirest.data.models.UserPermit;
@@ -28,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -43,9 +46,9 @@ import retrofit2.Retrofit;
 public class DataNetHandler {
     private static final String tag = "DataNetHandler";
     // TODO: 16.03.2024
-//    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("https://unirest.site/").build();
-//    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.43.240:11111/").build();
-    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.0.111:11111/").build();
+//    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://unirest.c1.is/").build();
+    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.43.240:11111/").build();
+//    private final Retrofit retrofitMain = new Retrofit.Builder().baseUrl("http://192.168.0.111:11111/").build();
 
     public void getServerStatus(ICallback<Boolean> serverEnabledCallback) {
         ApiServices services = retrofitMain.create(ApiServices.class);
@@ -187,7 +190,7 @@ public class DataNetHandler {
         });
     }
 
-    public void searchUser(String name,Long dormitoryId, ICallback<List<UserSearch>> callback) {
+    public void searchUser(String name, Long dormitoryId, ICallback<List<UserSearch>> callback) {
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         apiServices.searchUser(name, dormitoryId).enqueue(new BaseCallback<ResponseBody>() {
             @Override
@@ -590,6 +593,179 @@ public class DataNetHandler {
         }
         ApiServices apiServices = retrofitMain.create(ApiServices.class);
         call(urlCallback, apiServices.getImagePayment(payment.getCheckId()).request().url().toString());
+    }
+
+    public void getDormitoryRequests(Long dormitoryId, ICallback<List<Request>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+
+        apiServices.getDormitoryRequests(dormitoryId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<Request>>() {
+                }.getType()));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void getUserRequests(Long userId, ICallback<List<Request>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+
+        apiServices.getUserRequests(userId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<Request>>() {
+                }.getType()));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void sendRequest(Long dormitoryId, Long userId, Long templateId, ICallback<ResponseBody> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.sendRequest(dormitoryId, userId, templateId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void sendGenerationRequest(Long requestId, HashMap<String, String> replacements, ICallback<ResponseBody> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(replacements));
+        apiServices.sendGenerationRequest(requestId, body).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void registerNewRequest(RequestRegister requestObject, ICallback<ResponseBody> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(requestObject));
+        apiServices.registerNewRequest(body).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void getRequestKeys(Long templateId, ICallback<List<String>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+
+        apiServices.getRequestKeys(templateId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<String>>() {
+                }.getType()));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void getRequestFile(String requestId, ICallback<List<String>> callback) {
+        // TODO: 01.06.2024 File
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.getRequestFile(requestId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<String>>() {
+                }.getType()));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
+    }
+
+    public void removeUserFromRoom(Long userId, Long roomId, ICallback<Boolean> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.removeUserFromRoom(userId, roomId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, true);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, false);
+            }
+        });
+    }
+
+    public void addUserToRoom(Long userId, Long roomId, ICallback<Boolean> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.addUserToRoom(userId, roomId).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, true);
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, false);
+            }
+        });
+    }
+
+    public void searchUsersForRoom(boolean withoutRoom, String keyWord, ICallback<List<User>> callback) {
+        ApiServices apiServices = retrofitMain.create(ApiServices.class);
+        apiServices.searchUsersForRoom(withoutRoom, keyWord).enqueue(new BaseCallback<ResponseBody>() {
+            @Override
+            public void onJson(Response<ResponseBody> response, String jsonString) {
+                call(callback, new Gson().fromJson(jsonString, new TypeToken<List<User>>() {
+                }));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                BaseCallback.super.onFailure(call, t);
+                call(callback, null);
+            }
+        });
     }
 
     private <T> void call(ICallback<T> callback, T value) {

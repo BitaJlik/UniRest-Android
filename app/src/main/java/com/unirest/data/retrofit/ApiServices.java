@@ -124,4 +124,35 @@ public interface ApiServices {
 
     @POST("cooker/free")
     Call<ResponseBody> setFreeCooker(@Query("id") Long id, @Query("userId") Long userId);
+
+    @GET("request/list")
+    Call<ResponseBody> getDormitoryRequests(@Query("id") Long dormitoryId);
+
+    @GET("request/of")
+    Call<ResponseBody> getUserRequests(@Query("id") Long userId);
+
+    @POST("request/put")
+    Call<ResponseBody> sendRequest(@Query("id") Long dormitoryId, @Query("userId") Long userId, @Query("templateId") Long templateId);
+
+    @GET("request/keys")
+    Call<ResponseBody> getRequestKeys(@Query("id") Long templateId);
+
+    @POST("request/generate")
+    Call<ResponseBody> sendGenerationRequest(@Query("id") Long requestId, @Body RequestBody body);
+
+    @GET("request/get/{request}")
+    Call<ResponseBody> getRequestFile(@Path("request") String requestId);
+
+    @POST("request/new")
+    Call<ResponseBody> registerNewRequest(@Body RequestBody body);
+
+    @POST("user/room/add")
+    Call<ResponseBody> addUserToRoom(@Query("id") Long userId, @Query("roomId") Long roomId);
+
+    @POST("user/room/remove")
+    Call<ResponseBody> removeUserFromRoom(@Query("id") Long userId, @Query("roomId") Long roomId);
+
+    @GET("user/room/searching")
+    Call<ResponseBody> searchUsersForRoom(@Query("hasRoom") boolean hasRoom, @Query("keyWord") String keyWord);
+
 }
