@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Base.Theme.UniRest" parent="Theme.Material3.Light.NoActionBar">
+        <item name="useMaterialThemeColors">false</item>
+
         <item name="bottomNavigationStyle">@style/defaultBottomNavigation</item>
         <item name="materialButtonStyle">@style/defaultMaterialButton</item>
         <item name="android:transitionGroup">true</item>
@@ -48,6 +50,7 @@
         <item name="strokeColor">@color/button_color_selector</item>
         <item name="strokeWidth">1dp</item>
         <item name="android:textColor">@color/text_primary</item>
+        <item name="iconTint">@color/text_primary</item>
         <item name="cornerRadius">8dp</item>
         <item name="android:textSize">15sp</item>
     </style>

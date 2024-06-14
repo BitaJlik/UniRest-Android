@@ -98,6 +98,7 @@ public class FragmentProfileEdit extends BaseFragment<FragmentProfileEditBinding
         mainViewModel.user.observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 this.user = user;
+                binding.balance.setText(String.format("%s: %s", getString(R.string.balance), user.getBalance()));
                 binding.layoutUsername.getEditText().setText(user.getUsername());
                 binding.layoutName.getEditText().setText(user.getName());
                 binding.layoutLastName.getEditText().setText(user.getLastName());
@@ -114,14 +115,14 @@ public class FragmentProfileEdit extends BaseFragment<FragmentProfileEditBinding
                     Picasso.get().load(url).into(binding.image, new Callback() {
                         @Override
                         public void onSuccess() {
-                            if(!isVisible()) return;
+                            if (!isVisible()) return;
                             binding.progress.setVisibility(View.GONE);
                             binding.image.setVisibility(View.VISIBLE);
                         }
 
                         @Override
                         public void onError(Exception e) {
-                            if(!isVisible()) return;
+                            if (!isVisible()) return;
                             binding.progress.setVisibility(View.GONE);
                             binding.imageError.setVisibility(View.VISIBLE);
                         }

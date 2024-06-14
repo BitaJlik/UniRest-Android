@@ -145,8 +145,8 @@ public class ActivityMain extends AppCompatActivity {
         this.selectNav(R.id.home);
         this.changeFragment(new FragmentHome());
 
-//        WorkRequest dataCheckWorkRequest = new PeriodicWorkRequest.Builder(ReminderWorker.class, 5, TimeUnit.MINUTES).build();
-//        WorkManager.getInstance(this).enqueue(dataCheckWorkRequest);
+        WorkRequest dataCheckWorkRequest = new PeriodicWorkRequest.Builder(ReminderWorker.class, 5, TimeUnit.MINUTES).build();
+        WorkManager.getInstance(this).enqueue(dataCheckWorkRequest);
     }
 
     public void updateUser() {

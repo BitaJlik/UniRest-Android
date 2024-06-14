@@ -13,6 +13,8 @@ import com.unirest.databinding.ItemWasherBinding;
 
 public class WasherAdapter extends BaseAdapter<Washer> {
     private static ICallback<Washer> washerICallback;
+    private static ICallback<Washer> removeICallback;
+    private static boolean modeEdit = false;
 
     {
         addHolder(new HolderPair(WasherHolder.class, R.layout.item_washer));
@@ -29,6 +31,18 @@ public class WasherAdapter extends BaseAdapter<Washer> {
         @Override
         public void bind(Washer washer) {
             binding.text.setText(String.format("%s %s", itemView.getContext().getString(R.string.washer), getAdapterPosition() + 1));
+
+            if (modeEdit) {
+                binding.removeImage.setVisibility(View.VISIBLE);
+                if (removeICallback != null) {
+                    binding.removeImage.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                        removeICallback.call(washer);
+                    });
+                }
+            } else {
+                binding.removeImage.setVisibility(View.GONE);
+            }
+
             if (washerICallback != null) {
                 binding.getRoot().setOnClickListener((OnClickCallback) (v, enableButton) -> {
                     washerICallback.call(washer);
@@ -41,5 +55,13 @@ public class WasherAdapter extends BaseAdapter<Washer> {
 
     public void setWasherICallback(ICallback<Washer> washerICallback) {
         WasherAdapter.washerICallback = washerICallback;
+    }
+
+    public void setModeEdit(boolean modeEdit) {
+        WasherAdapter.modeEdit = modeEdit;
+    }
+
+    public void setRemoveICallback(ICallback<Washer> removeICallback) {
+        WasherAdapter.removeICallback = removeICallback;
     }
 }

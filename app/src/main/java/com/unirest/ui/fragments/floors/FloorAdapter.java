@@ -14,6 +14,7 @@ import com.unirest.databinding.ItemFloorBinding;
 
 public class FloorAdapter extends BaseAdapter<Floor> {
     private static ICallback<Floor> floorICallback;
+    private static ICallback<Floor> floorLongCallback;
 
 
     {
@@ -50,10 +51,21 @@ public class FloorAdapter extends BaseAdapter<Floor> {
                 }
                 enableButton.call(true);
             });
+
+            if (floorLongCallback != null) {
+                binding.getRoot().setOnLongClickListener(view -> {
+                    floorLongCallback.call(floor);
+                    return false;
+                });
+            }
         }
     }
 
     public void setFloorICallback(ICallback<Floor> floorICallback) {
         FloorAdapter.floorICallback = floorICallback;
+    }
+
+    public void setFloorLongCallback(ICallback<Floor> floorLongCallback) {
+        FloorAdapter.floorLongCallback = floorLongCallback;
     }
 }

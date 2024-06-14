@@ -18,6 +18,7 @@ import com.unirest.ui.common.BaseFragment;
 import com.unirest.ui.fragments.dormitory.edit.FragmentEditDormitory;
 import com.unirest.ui.fragments.floors.FragmentFloors;
 import com.unirest.ui.fragments.moderate.FragmentModerate;
+import com.unirest.ui.fragments.paid.FragmentPaid;
 import com.unirest.ui.fragments.search.FragmentSearch;
 
 import java.text.DateFormat;
@@ -86,7 +87,7 @@ public class FragmentDormitory extends BaseFragment<FragmentDormitoryBinding> {
                     }
 
                     binding.floors.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                        changeFragment(new FragmentFloors(),true);
+                        changeFragment(new FragmentFloors(), true);
                         enableButton.call(true);
                     });
 
@@ -97,25 +98,33 @@ public class FragmentDormitory extends BaseFragment<FragmentDormitoryBinding> {
                     });
 
                     binding.edit.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                        changeFragment(new FragmentEditDormitory(),true);
+                        changeFragment(new FragmentEditDormitory(), true);
                         enableButton.call(true);
                     });
 
                     if (user.getRole().getLevel() > 1) {
                         binding.moderate.setVisibility(View.VISIBLE);
                         binding.search.setVisibility(View.VISIBLE);
+                        binding.paid.setVisibility(View.VISIBLE);
+
                         binding.moderate.setOnClickListener((OnClickCallback) (v, enableButton) -> {
                             changeFragment(new FragmentModerate(), true);
                             enableButton.call(true);
                         });
 
                         binding.search.setOnClickListener((OnClickCallback) (v, enableButton) -> {
-                            changeFragment(new FragmentSearch(),true);
+                            changeFragment(new FragmentSearch(), true);
+                            enableButton.call(true);
+                        });
+
+                        binding.paid.setOnClickListener((OnClickCallback) (v, enableButton) -> {
+                            changeFragment(new FragmentPaid(), true);
                             enableButton.call(true);
                         });
                     } else {
                         binding.moderate.setVisibility(View.GONE);
                         binding.search.setVisibility(View.GONE);
+                        binding.paid.setVisibility(View.GONE);
                     }
                 });
             });

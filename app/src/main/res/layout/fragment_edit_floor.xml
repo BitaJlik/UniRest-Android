@@ -30,7 +30,7 @@
                 style="@style/defaultInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/dormitory_name"
+                android:hint="@string/short_name"
                 app:errorIconTint="@color/red_lite"
                 app:errorTextColor="@color/red_lite">
 
@@ -43,41 +43,14 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutAddress"
-                style="@style/defaultInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/address"
-                app:errorIconTint="@color/red_lite"
-                app:errorTextColor="@color/red_lite">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:textColor="@color/text_primary" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/remindCheckBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:text="@string/elevator_no"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                app:buttonTint="@color/second" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/cookers"
+                android:layout_marginTop="10dp"
+                android:text="@string/floor_side"
                 android:textColor="@color/text_primary"
                 android:textSize="18sp" />
 
@@ -89,43 +62,94 @@
                 android:padding="7dp">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/cookerElectrical"
+                    android:id="@+id/floorFull"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:checked="true"
-                    android:text="@string/cooker_electrical"
+                    android:text="@string/floor_side_full"
                     android:textColor="@color/text_primary"
                     android:textSize="17sp"
                     app:buttonTint="@color/bottom_navigation_color_selector" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/cookerGas"
+                    android:id="@+id/floorLeft"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/cooker_gas"
+                    android:text="@string/floor_side_left"
                     android:textColor="@color/text_primary"
                     android:textSize="17sp"
                     app:buttonTint="@color/bottom_navigation_color_selector" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/cookerHybrid"
+                    android:id="@+id/floorRight"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/cooker_hybrid"
+                    android:text="@string/floor_side_right"
                     android:textColor="@color/text_primary"
                     android:textSize="17sp"
                     app:buttonTint="@color/bottom_navigation_color_selector" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/cookerNone"
+                    android:id="@+id/floorCentral"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/cooker_none"
+                    android:text="@string/floor_side_central"
+                    android:textColor="@color/text_primary"
+                    android:textSize="17sp"
+                    app:buttonTint="@color/bottom_navigation_color_selector" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/floorSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/floor_side_small"
+                    android:textColor="@color/text_primary"
+                    android:textSize="17sp"
+                    app:buttonTint="@color/bottom_navigation_color_selector" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/floorLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/floor_side_large"
                     android:textColor="@color/text_primary"
                     android:textSize="17sp"
                     app:buttonTint="@color/bottom_navigation_color_selector" />
 
             </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editCookers"
+                    style="@style/defaultMaterialButtonOutline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:paddingVertical="10dp"
+                    android:text="@string/edit_cookers"
+                    app:icon="@drawable/ic_cooker"
+                    app:iconTint="@color/orange_light" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editWashers"
+                    style="@style/defaultMaterialButtonOutline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:paddingVertical="10dp"
+                    android:text="@string/edit_washers"
+                    app:icon="@drawable/ic_washer"
+                    app:iconTint="@color/blue_light" />
+
+            </LinearLayout>
 
 
         </LinearLayout>

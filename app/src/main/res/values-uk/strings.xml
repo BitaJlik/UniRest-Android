@@ -180,4 +180,20 @@
     <string name="without_room">Без кімнати</string>
     <string name="or">Або</string>
     <string name="edit">Редагувати</string>
+    <string name="address">Адреса</string>
+    <string name="dormitory_name">Назва гуртожитку</string>
+    <string name="floor_side_full">Повний</string>
+    <string name="floor_side_left">Лівий</string>
+    <string name="floor_side_right">Правий</string>
+    <string name="floor_side_central">Центральний</string>
+    <string name="floor_side_small">Маленький</string>
+    <string name="floor_side_large">Великий</string>
+    <string name="floor_side">Сторона поверху</string>
+    <string name="edit_cookers">Редагувати плити</string>
+    <string name="edit_washers">Відредагуйте шайби</string>
+    <string name="add_washer">Додати шайбу</string>
+    <string name="add_cooker">Додайте плиту</string>
+    <string name="sum_description_paid">Вкажіть суму, яку ви хочете зняти за конкретний місяць з усіх користувачів</string>
+    <string name="date_description_paid">Вкажіть дату, за яку буде нарахована оплата для користувачів</string>
+    <string name="add_paid">Додати платіж</string>
 </resources>

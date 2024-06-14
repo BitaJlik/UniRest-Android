@@ -155,4 +155,22 @@ public interface ApiServices {
     @GET("user/room/searching")
     Call<ResponseBody> searchUsersForRoom(@Query("hasRoom") boolean hasRoom, @Query("keyWord") String keyWord);
 
+    @POST("dormitory/admin/update")
+    Call<ResponseBody> adminUpdateDormitory(@Body RequestBody body);
+
+    @POST("floor/admin/update")
+    Call<ResponseBody> adminUpdateFloor(@Body RequestBody body);
+
+    @POST("room/admin/update")
+    Call<ResponseBody> adminUpdateRoom(@Body RequestBody body);
+
+    @POST("washer/admin/update")
+    Call<ResponseBody> adminUpdateWasher(@Query("remove") boolean remove, @Body RequestBody body);
+
+    @POST("cooker/admin/update")
+    Call<ResponseBody> adminUpdateCooker(@Query("remove") boolean remove, @Body RequestBody body);
+
+    @POST("paid/send")
+    Call<ResponseBody> sendPaid(@Body RequestBody body);
+
 }

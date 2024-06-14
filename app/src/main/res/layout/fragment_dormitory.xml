@@ -302,6 +302,20 @@
                     app:icon="@drawable/ic_edit_dormitory"
                     app:iconSize="22dp" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/paid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="1"
+                    android:autoSizeTextType="uniform"
+                    android:drawableTint="@color/text_primary"
+                    android:text="@string/add_paid"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_moderate_payment"
+                    app:iconSize="22dp" />
+
             </LinearLayout>
 
         </LinearLayout>

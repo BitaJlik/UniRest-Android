@@ -9,9 +9,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.unirest.R;
+import com.unirest.api.ICallback;
 import com.unirest.data.DataNetHandler;
+import com.unirest.data.models.Floor;
 import com.unirest.databinding.FragmentFloorsBinding;
 import com.unirest.ui.common.BaseFragment;
+import com.unirest.ui.fragments.dormitory.edit.FragmentEditFloor;
 import com.unirest.ui.fragments.rooms.FragmentRooms;
 
 public class FragmentFloors extends BaseFragment<FragmentFloorsBinding> {
@@ -38,6 +41,13 @@ public class FragmentFloors extends BaseFragment<FragmentFloorsBinding> {
                                 mainViewModel.selectedFloor.setValue(floor);
                                 changeFragment(new FragmentRooms(), true);
                             });
+
+                            if (user.getRole().getLevel() > 1) {
+                                adapter.setFloorLongCallback(floor -> {
+                                    mainViewModel.selectedFloor.setValue(floor);
+                                    changeFragment(new FragmentEditFloor(), true);
+                                });
+                            }
 
                             if (isVisible()) {
                                 binding.shimmer.hideShimmer();

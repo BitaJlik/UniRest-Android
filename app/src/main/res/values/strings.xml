@@ -180,4 +180,20 @@
     <string name="without_room">Without room</string>
     <string name="or">Or</string>
     <string name="edit">Edit</string>
+    <string name="address">Address</string>
+    <string name="dormitory_name">Dormitory name</string>
+    <string name="floor_side_full">Full</string>
+    <string name="floor_side_left">Left</string>
+    <string name="floor_side_right">Right</string>
+    <string name="floor_side_central">Central</string>
+    <string name="floor_side_small">Small</string>
+    <string name="floor_side_large">Large</string>
+    <string name="floor_side">Floor side</string>
+    <string name="edit_cookers">Edit cookers</string>
+    <string name="edit_washers">Edit washers</string>
+    <string name="add_washer">Add washer</string>
+    <string name="add_cooker">Add cooker</string>
+    <string name="sum_description_paid">Specify the amount you want to withdraw for a specific month from all users</string>
+    <string name="date_description_paid">Specify the date for which payment will be calculated for users</string>
+    <string name="add_paid">Add paid</string>
 </resources>
